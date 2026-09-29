@@ -5,95 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Little Message For You 💌</title>
 <style>
-*{box-sizing:border-box;font-family:"Arial",sans-serif}
+*{box-sizing:border-box;font-family:Arial,sans-serif}
 body{
-    margin:0;
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:linear-gradient(135deg,#ffe4ef,#dff5ff);
-    overflow:hidden;
-    padding:20px;
+margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+background:linear-gradient(135deg,#ffe4ef,#dff5ff);overflow:hidden
 }
 .card{
-    width:100%;
-    max-width:430px;
-    max-height:90vh;
-    overflow-y:auto;
-    background:white;
-    border-radius:35px;
-    padding:clamp(20px,5vw,35px);
-    text-align:center;
-    box-shadow:0 15px 40px #0002;
+width:90%;max-width:430px;background:white;border-radius:35px;
+padding:30px;text-align:center;box-shadow:0 15px 40px #0002
 }
 .page{display:none}
-#page1{display:block}
-h1{color:#ff709b;font-size:clamp(24px,6vw,32px)}
-h2{color:#6fa8dc;font-size:clamp(20px,5vw,26px)}
-p{
-    color:#555;
-    line-height:1.9;
-    font-size:16px;
-}
+h1{color:#ff709b}h2{color:#6fa8dc}p{color:#555;line-height:1.9}
 button{
-    border:0;
-    background:#ff91b8;
-    color:white;
-    padding:13px 28px;
-    border-radius:50px;
-    font-size:16px;
-    cursor:pointer;
-    margin-top:15px;
-    transition:.2s;
+border:0;background:#ff91b8;color:white;padding:13px 28px;
+border-radius:50px;font-size:16px;cursor:pointer;margin-top:15px
 }
-button:hover{transform:scale(1.05)}
 .cat{font-size:70px;animation:bounce 2s infinite}
-.envelope{font-size:90px;cursor:pointer;animation:shake 2s infinite}
+.envelope{
+font-size:90px;cursor:pointer;animation:shake 2s infinite
+}
 .gift{font-size:90px;animation:gift 1.5s infinite}
 .heart{
-    position:absolute;
-    font-size:40px;
-    cursor:pointer;
-    animation:float 2s infinite;
-    user-select:none;
+position:absolute;font-size:40px;cursor:pointer;animation:float 2s infinite
 }
 .music{
-    width:130px;height:130px;border-radius:50%;
-    background:#ffd6e7;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:45px;
+width:130px;height:130px;border-radius:50%;background:#ffd6e7;
+margin:auto;display:flex;align-items:center;justify-content:center;
+font-size:45px;animation:spin 4s linear infinite
 }
 .wave span{
-    display:inline-block;
-    font-size:25px;
-    animation:wave 1s infinite;
-    margin:2px
+display:inline-block;font-size:25px;animation:wave 1s infinite;margin:2px
 }
 .wave span:nth-child(2){animation-delay:.2s}
 .wave span:nth-child(3){animation-delay:.4s}
-
 @keyframes bounce{50%{transform:translateY(-10px)}}
 @keyframes shake{50%{transform:rotate(5deg)}}
 @keyframes gift{50%{transform:scale(1.1)}}
 @keyframes float{50%{transform:translateY(-20px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
 @keyframes wave{50%{transform:translateY(-10px)}}
-
-@media(max-width:480px){
-    body{padding:12px}
-    .card{
-        border-radius:25px;
-        max-height:92vh;
-    }
-    p{font-size:15px}
-    .heart{font-size:35px}
-}
 </style>
 </head>
-
 <body>
 <div class="card">
 
@@ -108,57 +60,60 @@ button:hover{transform:scale(1.05)}
 ยังมีคนหนึ่งคนที่เป็นห่วงคุณอยู่เสมอ 🌷
 </p>
 <div class="envelope" onclick="startGame()">💗</div>
-<p>กดหัวใจเพื่อเปิด</p>
+<p>กดซองเพื่อเปิด</p>
 </div>
 
 <div id="page2" class="page">
-<h2>เจ้าเหมียวทำหัวใจตกไว้ 💗</h2>
+<h2>ดูเหมือนว่าเจ้าเหมียวจะทำหัวใจตกไว้ -
+    ช่วยเก็บหัวใจให้ครบ 5 ดวงนะคะ ๆ</h2>
 <p>
-ช่วยเก็บหัวใจให้ครบ 5 ดวงนะคะ<br><br>
-อ่านก่อนเก็บหัวใจนะ 🐱<br><br>
-เจ้าเหมียวเห็นว่าคุณคงจะเหนื่อยมาก ๆ เลยใช่ไหม<br>
-วันนี้เจ้าเหมียวอยู่เป็นเพื่อน ให้คุณได้พักใจสักแป๊บนะ<br><br>
-อย่าลืม...<br>
-"ใจดีกับตัวเองนะ" 🌷
+    เก็บใจครบแล้วจะเปลี่ยนหน้าเลยนะ คุณอ่านก่อนเก็บหัวใจนะคะ ๆ<br><br>
+เจ้าเหมียวเห็นว่าคุณคงจะเหนื่อยมาก ๆ เลยใช่ไหม <br>
+งั้นวันนี้เจ้าเหมียวอยู่เป็นเพื่อน ให้คุณได้พักใจสักแป๊บนะ 🐱<br><br>
+แล้วก็ที่สำคัณเหมียวอยากบอกคุณว่าอย่าลืม...<br>
+"ใจดีกับตัวเองนะ" 🌷<br><br>
+
+
+
 </p>
 <h3 id="score">0 / 5</h3>
 </div>
 
 <div id="page3" class="page">
 <div class="gift">🎁</div>
-<h2>เย้! เก็บหัวใจครบแล้ว 🎉</h2>
-<p>
-เจ้าเหมียวมีของขวัญจะให้คุณ<br><br>
-มันเป็นเพียงข้อความเล็ก ๆ<br>
-ที่อยากเห็นคุณยิ้มได้ในวันนี้ 🤍
-</p>
-<button onclick="show(4)">เปิดดูข้างใน 🌷</button>
+<h2>เย้! คุณเก็บหัวใจครบแย้ววววววว 🎉</h2>
+<p>เจ้าเหมียวมีของขวัญจะให้คุณด้วยนะคะ ๆ <br><br>
+จริง ๆ มันเป็นแค่ข้อความเล็ก ๆ จากเจ้าเหมียวที่อยากเห็นคุณยิ้มได้ในวันนี้ 🤍</p>
+<button onclick="show(4)">เปิดดูข้างในสิคะ ๆ🌷</button>
 </div>
 
 <div id="page4" class="page">
 <h2>ถึงคุณคนเก่ง 🤍</h2>
 <p>
 ช่วงนี้เหนื่อยมากไหม<br><br>
-เหมียวรู้นะว่าคุณมีหลายอย่างให้จัดการ<br>
-ทั้งงานและเรื่องต่าง ๆ ในชีวิต<br><br>
-เหมียวเห็นคุณพยายามมาตลอดเลยนะ ᓚᘏᗢ<br><br>
-คุณทำได้ดีมากแล้วนะ 🤍<br><br>
-ถ้าเหนื่อยมาก ๆ อย่าลืมให้ตัวเองได้พักบ้าง<br><br>
-ออกไปหาอะไรอร่อย ๆ กิน เดินเล่น<br>
-หรือทำอะไรเล็ก ๆ ที่ทำให้สบายใจนะ<br><br>
-ยังมีแมวตัวอ้วน ๆ ตัวหนึ่ง<br>
-พร้อมให้คุณมาจกพุงเล่นอยู่เสมอ 🐱🤍
+เหมียวรู้นะ ว่าช่วงนี้คุณมีหลายอย่างให้ต้องจัดการ<br>
+ทั้งงาน ทั้งเรื่องต่าง ๆ ที่เข้ามาในชีวิต<br><br>
+เหมียวเห็นคุณพยายามมาตลอดเลยนะ ᓚᘏᗢ <br>
+เหมียวอยากคุณบอกว่า...<br><br>
+คุณทำได้ดีมากแล้วนะ <br><br>
+
+ถ้าวันไหนคุณเหนื่อย ถ้าวันไหนคุณไม่ไหว อย่าลังเลเลยนะที่จะพักผ่อน<br><br>
+อย่าลังเลเลยนะที่จะออกมาหาของอร่อย ๆ กิน และที่สำคัญอย่าลังเลเลยที่จะออกมาหาเหมียว ๆ ตัวอ้วน ๆ ที่ไหนสักที่ที่รอให้คุณจกพุงอยุ่<br>
+
 </p>
-<button onclick="show(6)">ฟังเพลงกันนะ 💙</button>
+<button onclick="show(6)">เดี๋ยวเหมียวพาไปฟังเพลงนะ ๆ 💙</button>
 </div>
 
 <div id="page6" class="page">
 <h2>เพลงสำหรับวันที่เหนื่อย</h2>
 <div class="wave"><span>♪</span><span>♫</span><span>♪</span></div>
 <p>
-บางครั้งเราไม่ต้องการคำพูดเยอะมาก<br><br>
+วันนี้เหมียวเอาเพลงนี้มาฝากคุณนะคะ<br><br>
+บางครั้งเราอาจไม่ต้องการคำพูดอะไรเยอะมากมาย<br><br>
 แค่มีเพลงดี ๆ สักเพลง<br>
-ก็อาจช่วยให้วันนั้นดีขึ้นนิดหนึ่ง 🌷
+ก็อาจช่วยให้วันนั้นดีขึ้นนิดหนึ่ง<br><br>
+เหมียวเลยเลือกเพลงเล็ก ๆ ไว้ให้<br>
+ลองฟังดูนะ 🌷
 </p>
 <a href="https://youtu.be/e0aDc5gy2xo" target="_blank">
 <button>เปิดเพลงใน YouTube 🎶</button>
@@ -171,12 +126,13 @@ button:hover{transform:scale(1.05)}
 <h2>สุดท้ายแล้ว...</h2>
 <p>
 ขอบคุณคุณนะ<br>
-ที่เคยเข้ามาเป็นส่วนหนึ่งในชีวิตผม<br><br>
+ที่ครั้งหนึ่งเคยเข้ามาเป็นส่วนหนึ่งในชีวิตผม<br><br>
 ไม่ว่าต่อจากนี้จะเป็นยังไง<br>
 ผมก็ยังอยากเห็นคุณมีความสุข<br><br>
 อย่าลืมดูแลตัวเองนะ<br>
-พักบ้าง กินของอร่อย ๆ และยิ้มเยอะ ๆ<br><br>
-ผมยังหวังดีกับคุณเสมอนะคะ 🌷
+คุณก็พักบ้าง กินของอร่อย ๆ และก็ยิ้มเยอะ ๆ ตอนคุณยิ้มมันทำโลกทั้งใบของใครบางคนมีความหมายมากเลยนะ ๆ <br><br>
+
+ไม่ว่ายังไงก็ตามที ผมก็ยังหวังดีกับคุณเสมอนะคะ 🌷
 </p>
 </div>
 
@@ -184,32 +140,29 @@ button:hover{transform:scale(1.05)}
 
 <script>
 let score=0;
-
 function hide(){
-    document.querySelectorAll(".page,#page1").forEach(x=>x.style.display="none");
-}
-
+for(let i=1;i<=7;i++){
+let x=document.getElementById("page"+i);
+if(x)x.style.display="none";
+}}
 function show(n){
-    hide();
-    document.getElementById("page"+n).style.display="block";
+hide();
+document.getElementById("page"+n).style.display="block";
 }
-
 function startGame(){
-    show(2);
-    for(let i=0;i<5;i++){
-        let h=document.createElement("div");
-        h.innerHTML="💗";
-        h.className="heart";
-        h.style.left=(Math.random()*75+10)+"%";
-        h.style.top=(Math.random()*70+10)+"%";
-        h.onclick=()=>{
-            h.remove();
-            score++;
-            document.getElementById("score").innerHTML=score+" / 5";
-            if(score===5) show(3);
-        };
-        document.body.appendChild(h);
-    }
+show(2);
+for(let i=0;i<5;i++){
+let h=document.createElement("div");
+h.innerHTML="💗";h.className="heart";
+h.style.left=Math.random()*80+"%";
+h.style.top=Math.random()*80+"%";
+h.onclick=()=>{
+h.remove();score++;
+document.getElementById("score").innerHTML=score+" / 5";
+if(score===5)show(3);
+};
+document.body.appendChild(h);
+}
 }
 </script>
 </body>
