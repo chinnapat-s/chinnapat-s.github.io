@@ -2,124 +2,174 @@
 <html lang="th">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>For You 💙</title>
+<title>Little Quest 💌</title>
+
 
 <style>
 
-body{
-    margin:0;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#ffdce8,#dff3ff);
-    font-family:"Arial",sans-serif;
+*{
+box-sizing:border-box;
+font-family:"Arial",sans-serif;
 }
 
-.box{
-    width:90%;
-    max-width:420px;
-    text-align:center;
+
+body{
+
+margin:0;
+min-height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:linear-gradient(135deg,#ffe4ef,#dff5ff);
+
+overflow:hidden;
+
 }
+
+
 
 .card{
-    background:white;
-    padding:35px;
-    border-radius:30px;
-    box-shadow:0 15px 40px rgba(0,0,0,.15);
-    animation:show .8s;
+
+width:90%;
+max-width:430px;
+
+background:white;
+
+border-radius:35px;
+
+padding:35px 25px;
+
+text-align:center;
+
+box-shadow:0 15px 40px rgba(0,0,0,.15);
+
 }
+
+
+
+.page{
+
+display:none;
+
+}
+
+
+
+.cat{
+
+font-size:70px;
+
+animation:bounce 2s infinite;
+
+}
+
+
 
 h1{
-    color:#ff6f9c;
+
+color:#ff709b;
+
 }
+
 
 h2{
-    color:#5b9bd5;
+
+color:#6fa8dc;
+
 }
 
+
+
 p{
-    color:#555;
-    line-height:1.8;
+
+color:#555;
+
+line-height:1.9;
+
 }
+
 
 
 button{
 
-    border:none;
-    background:#ff8fb1;
-    color:white;
+border:none;
 
-    padding:14px 30px;
+background:#ff91b8;
 
-    border-radius:40px;
+color:white;
 
-    font-size:16px;
+padding:14px 30px;
 
-    cursor:pointer;
+border-radius:50px;
 
-    margin-top:20px;
+font-size:16px;
 
-    transition:.3s;
+cursor:pointer;
+
+margin-top:15px;
 
 }
+
 
 
 button:hover{
 
-    transform:scale(1.05);
-    background:#ff6f9c;
+transform:scale(1.05);
 
 }
 
-
-.message{
-
-    display:none;
-
-    margin-top:20px;
-
-    animation:slide .7s;
-
-}
 
 
 .heart{
 
-    font-size:60px;
+position:absolute;
+
+font-size:40px;
+
+cursor:pointer;
+
+animation:float 2s infinite;
 
 }
 
 
-@keyframes show{
 
-from{
-opacity:0;
-transform:translateY(30px);
-}
+a{
 
-to{
-opacity:1;
-}
+text-decoration:none;
 
 }
 
 
-@keyframes slide{
 
-from{
-opacity:0;
-transform:translateY(20px);
-}
+@keyframes float{
 
-to{
-opacity:1;
+50%{
+
+transform:translateY(-20px);
+
 }
 
 }
+
+
+
+@keyframes bounce{
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+}
+
 
 
 </style>
@@ -128,87 +178,163 @@ opacity:1;
 </head>
 
 
+
 <body>
 
-
-<div class="box">
 
 
 <div class="card">
 
 
-<div class="heart">
-🌷
+
+<!-- หน้า 1 -->
+
+<div id="page1">
+
+
+<div class="cat">
+🐱
 </div>
 
 
 <h1>
-ถึงคุณ
+Little Quest 💌
 </h1>
 
 
 <p>
-มีบางอย่างที่เราอยากให้คุณได้อ่านนะ
+
+มีจดหมายเล็ก ๆ อยากให้คุณเปิดดู
+
 <br>
-แต่ไม่ต้องรีบอ่านก็ได้
+
+แต่ต้องช่วยแมวน้อยก่อนนะ 🌷
+
 </p>
 
 
-<button onclick="open1()">
-เปิดจดหมาย 💌
+<button onclick="startGame()">
+
+เปิดซอง 💌
+
 </button>
 
 
+</div>
 
-<div id="m1" class="message">
+
+
+
+
+<!-- หน้า 2 เกม -->
+
+<div id="page2" class="page">
+
 
 <h2>
-ช่วงนี้เหนื่อยไหม
+ช่วยเก็บหัวใจ 💗
 </h2>
 
+
 <p>
-เห็นคุณพยายามกับหลาย ๆ อย่างมากเลยนะ
+เก็บให้ครบ 5 ดวงนะ
+</p>
+
+
+<h3 id="score">
+
+0 / 5
+
+</h3>
+
+
+</div>
+
+
+
+
+
+
+<!-- หน้า 3 กล่อง -->
+
+<div id="page3" class="page">
+
+
+<div class="cat">
+🎁
+</div>
+
+
+<h2>
+เปิดกล่องสำเร็จ
+</h2>
+
+
+<p>
+
+เก่งมาก :)
+
 <br><br>
 
-อยากให้รู้ว่าคุณเก่งมากจริง ๆ
+มีบางอย่างอยากฝากไว้
 
-แต่ก็อย่าลืมพักบ้างนะ
+</p>
+
+
+<button onclick="openLetter()">
+
+เปิดดู 🌷
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- หน้า 4 -->
+
+<div id="page4" class="page">
+
+
+<h2>
+ถึงคุณคนเก่ง 🤍
+</h2>
+
+
+<p>
+
+ช่วงนี้เหนื่อยมากไหม
+
+<br><br>
+
+เห็นคุณพยายามกับหลาย ๆ อย่างเลย
+
+เราอยากบอกว่า
+
+คุณเก่งมากนะ
+
+<br><br>
+
+แต่อย่าลืมพักบ้าง
+
 กินข้าวดี ๆ
-นอนให้พอ
-และอย่าลืมดูแลตัวเองด้วย
-</p>
 
+พักสายตา
 
-<button onclick="open2()">
-อ่านต่อ 🌷
-</button>
-
-</div>
-
-
-
-<div id="m2" class="message">
-
-
-<h2>
-มีเรื่องหนึ่งอยากบอก
-</h2>
-
-
-<p>
-
-ที่ผ่านมาอาจมีหลายอย่างที่เราอาจทำได้ไม่ดีพอ
-
-บางเรื่องอาจทำให้คุณเหนื่อย
-หรือเสียใจ
-
-เราอยากบอกว่าขอโทษนะ
+และดูแลตัวเองด้วยนะ
 
 </p>
 
 
-<button onclick="open3()">
-อีกนิดหนึ่ง 💙
+<button onclick="page5()">
+
+อ่านต่อ 💙
+
 </button>
 
 
@@ -217,30 +343,123 @@ opacity:1;
 
 
 
-<div id="m3" class="message">
+
+
+
+<!-- หน้า 5 -->
+
+<div id="page5" class="page">
 
 
 <h2>
-ถ้าเรามีโอกาสอีกครั้ง
+มีเรื่องอยากบอก
 </h2>
 
 
 <p>
 
-เราไม่ได้อยากกลับมาเพื่อทำให้ทุกอย่างเหมือนเดิมทันที
+ที่ผ่านมา
 
-แต่อยากค่อย ๆ เริ่มต้นใหม่
+ถ้ามีอะไรที่เราทำให้คุณเสียใจ
 
-อยากเป็นอีกหนึ่งคนที่คอยสนับสนุนคุณ
+หรือทำได้ไม่ดีพอ
 
-ในวันที่คุณเหนื่อย
+เราอยากขอโทษนะ
+
+<br><br>
+
+
+เราไม่ได้อยากกลับมา
+
+เพื่อทำให้คุณรู้สึกกดดัน
+
+<br><br>
+
+
+แค่อยากมีโอกาส
+
+ค่อย ๆ เรียนรู้กันใหม่
+
+และเป็นกำลังใจให้คุณอีกครั้ง
 
 </p>
 
 
-<button onclick="open4()">
+<button onclick="playlist()">
+
+ไปฟังเพลงกัน 🎧
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- หน้า 6 playlist -->
+
+<div id="page6" class="page">
+
+
+<div class="cat">
+
+🎧🐱
+
+</div>
+
+
+<h2>
+เพลงสำหรับวันที่เหนื่อย
+</h2>
+
+
+<p>
+
+บางวันที่เหนื่อยมาก ๆ
+
+เราอาจไม่ต้องการคำพูดเยอะ
+
+<br><br>
+
+แค่มีเพลงดี ๆ สักเพลง
+
+ก็อาจช่วยให้วันนั้นดีขึ้นนิดหนึ่ง
+
+<br><br>
+
+เราเลยเลือกเพลงเล็ก ๆ ไว้ให้
+
+ลองฟังดูนะ 🌷
+
+</p>
+
+
+
+<a href="YOUR_PLAYLIST_LINK" target="_blank">
+
+<button>
+
+เปิด Playlist 🎶
+
+</button>
+
+</a>
+
+
+
+<br>
+
+
+<button onclick="finish()">
+
 ข้อความสุดท้าย 🤍
+
 </button>
+
 
 
 </div>
@@ -248,76 +467,211 @@ opacity:1;
 
 
 
-<div id="m4" class="message">
+
+
+
+<!-- หน้า 7 -->
+
+<div id="page7" class="page">
+
+
+<div class="cat">
+
+🐱💙
+
+</div>
 
 
 <h2>
-จากใจเรา
+สุดท้ายแล้ว
 </h2>
 
 
 <p>
+
 
 ไม่ว่าต่อจากนี้จะเป็นยังไง
 
-เราอยากให้คุณรู้ว่า
+<br><br>
 
-เรายังเป็นห่วงคุณเสมอ
+เราอยากเห็นคุณมีความสุข
 
-ขอให้คุณเจอแต่วันที่ดี
+พักบ้าง
 
-และอย่าลืมยิ้มเยอะ ๆ นะ 🌷
+กินของอร่อย ๆ
+
+และดูแลตัวเองดี ๆ
+
+<br><br>
+
+
+ถ้าวันหนึ่งคุณพร้อม
+
+เราอยากมีโอกาส
+
+กลับมาเป็นกำลังใจให้คุณอีกครั้ง
+
+<br><br>
+
+🌷
 
 </p>
 
 
-<p>
-💙
-</p>
-
-
 </div>
 
 
 
 </div>
 
-</div>
+
+
+
 
 
 
 <script>
 
 
-function open1(){
+let score=0;
 
-document.getElementById("m1").style.display="block";
+
+
+function hideAll(){
+
+for(let i=1;i<=7;i++){
+
+let p=document.getElementById("page"+i);
+
+if(p){
+
+p.style.display="none";
+
+}
+
+}
 
 }
 
 
-function open2(){
 
-document.getElementById("m2").style.display="block";
+
+
+function startGame(){
+
+
+hideAll();
+
+document.getElementById("page2").style.display="block";
+
+
+
+for(let i=0;i<5;i++){
+
+
+let heart=document.createElement("div");
+
+
+heart.innerHTML="💗";
+
+
+heart.className="heart";
+
+
+heart.style.left=Math.random()*80+"%";
+
+heart.style.top=Math.random()*80+"%";
+
+
+
+heart.onclick=function(){
+
+
+heart.remove();
+
+
+score++;
+
+
+document.getElementById("score").innerHTML=
+score+" / 5";
+
+
+
+if(score==5){
+
+
+hideAll();
+
+
+document.getElementById("page3").style.display="block";
+
 
 }
 
 
-function open3(){
 
-document.getElementById("m3").style.display="block";
+};
+
+
+
+document.body.appendChild(heart);
+
+
+
+}
+
+
 
 }
 
 
-function open4(){
 
-document.getElementById("m4").style.display="block";
+
+
+function openLetter(){
+
+hideAll();
+
+document.getElementById("page4").style.display="block";
+
 
 }
+
+
+
+function page5(){
+
+hideAll();
+
+document.getElementById("page5").style.display="block";
+
+}
+
+
+
+function playlist(){
+
+hideAll();
+
+document.getElementById("page6").style.display="block";
+
+}
+
+
+
+function finish(){
+
+hideAll();
+
+document.getElementById("page7").style.display="block";
+
+}
+
 
 
 </script>
+
 
 
 </body>
