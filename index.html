@@ -2,84 +2,243 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Little Message For You 💌</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;font-family:Arial,sans-serif}
-html,body{width:100%;min-height:100%;overflow-x:hidden}
-body{
-margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
-background:linear-gradient(135deg,#ffe4ef,#dff5ff);overflow:hidden;
-padding:20px;
+:root{
+  --pink:#ff8fb8; --pink-d:#f0629a; --pink-l:#ffe3ee; --blue:#8ec5f5; --blue-d:#5b9bd5;
+  --cream:#fffaf3; --ink:#5b4048; --soft:#7a6068; --line:#ffc9dd;
 }
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  font-family:'Mali','Sarabun','Noto Sans Thai',Tahoma,sans-serif;color:var(--ink);
+  display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden;
+  background:
+    radial-gradient(circle,#fff 2.5px,transparent 3px) 0 0/28px 28px,
+    linear-gradient(160deg,#ffdfec,#e2f1ff);
+}
+.bg{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.bg i{position:absolute;font-style:normal;opacity:.55;animation:drift 9s ease-in-out infinite}
+@keyframes drift{50%{transform:translateY(-16px) rotate(8deg)}}
+
+.wrap{position:relative;width:100%;max-width:420px;padding-top:46px}
+.peek{position:absolute;top:0;left:50%;width:92px;margin-left:-46px;z-index:2;animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px)}}
 .card{
-width:100%;max-width:430px;background:white;border-radius:35px;
-padding:clamp(20px,5vw,30px);text-align:center;box-shadow:0 15px 40px #0002;
-max-height:95vh;overflow-y:auto;
+  position:relative;background:var(--cream);border:3px solid var(--pink);border-radius:34px;
+  padding:52px clamp(20px,5vw,30px) 28px;text-align:center;max-height:calc(100vh - 90px);overflow-y:auto;
+  box-shadow:0 8px 0 var(--line),0 22px 40px rgba(240,98,154,.18);
 }
 .page{display:none}
-h1{color:#ff709b;font-size:clamp(24px,6vw,32px)}
-h2{color:#6fa8dc;font-size:clamp(18px,4.5vw,25px)}
-h3{font-size:clamp(18px,4vw,22px)}
-p{color:#555;line-height:1.9;font-size:clamp(14px,3.8vw,16px)}
-button{
-border:0;background:#ff91b8;color:white;padding:13px 28px;
-border-radius:50px;font-size:clamp(14px,3.8vw,16px);cursor:pointer;margin-top:15px;
-max-width:100%;
+.page.on{display:block;animation:pop .45s cubic-bezier(.3,1.5,.5,1)}
+@keyframes pop{from{opacity:0;transform:scale(.92) translateY(10px)}}
+
+h1{margin:8px 0 4px;color:var(--pink-d);font-size:clamp(26px,7vw,32px);line-height:1.3}
+h2{margin:6px 0 4px;color:var(--blue-d);font-size:clamp(19px,5vw,24px);line-height:1.4}
+p{margin:12px 0;line-height:1.95;font-size:clamp(15px,4vw,17px);color:var(--soft)}
+.small{font-size:14px;margin:6px 0 0}
+
+.btn{
+  display:inline-block;margin-top:16px;padding:12px 26px;border:0;border-radius:999px;cursor:pointer;
+  font:600 clamp(15px,4vw,17px) 'Mali',Tahoma,sans-serif;color:#fff;background:var(--pink-d);text-decoration:none;
+  box-shadow:0 5px 0 #c94a7f;transition:transform .12s,box-shadow .12s;
 }
-.cat{font-size:clamp(50px,15vw,70px);animation:bounce 2s infinite}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #c94a7f}
+.btn.blue{background:var(--blue-d);box-shadow:0 5px 0 #3f78ae}
+.btn.blue:active{box-shadow:0 1px 0 #3f78ae}
+.btn.ghost{background:#fff;color:var(--pink-d);border:2px solid var(--pink);box-shadow:0 5px 0 var(--line)}
+.btn:focus-visible,.envelope:focus-visible{outline:3px solid var(--blue-d);outline-offset:3px}
+.row{display:flex;flex-direction:column;align-items:center;gap:4px}
+
 .envelope{
-font-size:clamp(65px,20vw,90px);cursor:pointer;animation:shake 2s infinite
+  display:inline-block;font-size:clamp(70px,22vw,96px);cursor:pointer;background:none;border:0;padding:0;
+  animation:wiggle 2.2s ease-in-out infinite;filter:drop-shadow(0 8px 6px rgba(240,98,154,.25));
 }
-.gift{font-size:clamp(65px,20vw,90px);animation:gift 1.5s infinite}
+.envelope.go{animation:open .5s forwards}
+@keyframes wiggle{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg) scale(1.05)}}
+@keyframes open{to{transform:scale(1.5) rotate(0);opacity:0}}
+
+/* heart game */
+.field{
+  position:relative;height:190px;margin:14px 0 6px;border-radius:24px;
+  background:repeating-linear-gradient(45deg,#fff 0 12px,#fff3f8 12px 24px);border:2px dashed var(--line);
+}
 .heart{
-position:absolute;font-size:clamp(30px,8vw,40px);cursor:pointer;animation:float 2s infinite;
+  position:absolute;font-size:38px;line-height:1;cursor:pointer;border:0;background:none;padding:4px;
+  animation:float 2s ease-in-out infinite;
 }
-.music{
-width:130px;height:130px;max-width:35vw;max-height:35vw;border-radius:50%;background:#ffd6e7;
-margin:auto;display:flex;align-items:center;justify-content:center;
-font-size:45px;animation:spin 4s linear infinite
+.heart.pop{animation:burst .35s forwards;pointer-events:none}
+@keyframes float{50%{transform:translateY(-10px) scale(1.08)}}
+@keyframes burst{to{transform:scale(1.9);opacity:0}}
+.meter{display:flex;justify-content:center;gap:8px;font-size:26px}
+.meter span{filter:grayscale(1);opacity:.35;transition:.3s}
+.meter span.on{filter:none;opacity:1;transform:scale(1.15)}
+
+.gift{font-size:clamp(70px,22vw,92px);animation:gift 1.4s ease-in-out infinite}
+@keyframes gift{50%{transform:scale(1.12) rotate(-4deg)}}
+
+/* letter */
+.letter{
+  text-align:left;background:#fff;border-radius:20px;padding:6px 18px;margin-top:8px;border:2px solid var(--line);
+  background-image:repeating-linear-gradient(transparent 0 33px,#ffe9f1 33px 34px);
 }
-.wave span{
-display:inline-block;font-size:25px;animation:wave 1s infinite;margin:2px
+.letter p{line-height:34px;margin:0;padding:14px 0 0}
+
+/* music */
+.disc{
+  width:120px;height:120px;margin:12px auto 4px;border-radius:50%;position:relative;
+  background:radial-gradient(circle,var(--pink) 0 16%,#3b2a30 17% 44%,#54393f 45% 47%,#3b2a30 48% 70%,#54393f 71% 73%,#3b2a30 74%);
+  animation:spin 5s linear infinite;box-shadow:0 8px 16px rgba(0,0,0,.18);
 }
-.wave span:nth-child(2){animation-delay:.2s}
-.wave span:nth-child(3){animation-delay:.4s}
-@keyframes bounce{50%{transform:translateY(-10px)}}
-@keyframes shake{50%{transform:rotate(5deg)}}
-@keyframes gift{50%{transform:scale(1.1)}}
-@keyframes float{50%{transform:translateY(-20px)}}
+.disc::after{content:'🎵';position:absolute;inset:0;display:grid;place-items:center;font-size:24px}
 @keyframes spin{to{transform:rotate(360deg)}}
-@keyframes wave{50%{transform:translateY(-10px)}}
+.eq{display:flex;justify-content:center;align-items:flex-end;gap:5px;height:30px;margin-top:10px}
+.eq b{width:7px;border-radius:4px;background:var(--pink);animation:eq 1s ease-in-out infinite}
+.eq b:nth-child(2){animation-delay:.2s;background:var(--blue)}
+.eq b:nth-child(3){animation-delay:.4s}
+.eq b:nth-child(4){animation-delay:.6s;background:var(--blue)}
+.eq b:nth-child(5){animation-delay:.8s}
+@keyframes eq{0%,100%{height:8px}50%{height:28px}}
+
+.conf{position:fixed;top:-30px;font-size:24px;z-index:9;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}
+}
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="cat" viewBox="0 0 100 86">
+    <polygon points="12,40 18,6 46,24" fill="#ffd9b8" stroke="#5b4048" stroke-width="3" stroke-linejoin="round"/>
+    <polygon points="88,40 82,6 54,24" fill="#ffd9b8" stroke="#5b4048" stroke-width="3" stroke-linejoin="round"/>
+    <polygon points="20,32 22,16 34,25" fill="#ffb3cc"/>
+    <polygon points="80,32 78,16 66,25" fill="#ffb3cc"/>
+    <ellipse cx="50" cy="50" rx="40" ry="32" fill="#ffe6cf" stroke="#5b4048" stroke-width="3"/>
+    <ellipse cx="34" cy="50" rx="4.5" ry="6" fill="#5b4048"/>
+    <ellipse cx="66" cy="50" rx="4.5" ry="6" fill="#5b4048"/>
+    <circle cx="35.6" cy="47.6" r="1.7" fill="#fff"/>
+    <circle cx="67.6" cy="47.6" r="1.7" fill="#fff"/>
+    <ellipse cx="22" cy="61" rx="7" ry="4.5" fill="#ffb3cc" opacity=".8"/>
+    <ellipse cx="78" cy="61" rx="7" ry="4.5" fill="#ffb3cc" opacity=".8"/>
+    <path d="M46 58 h8 l-4 4.5z" fill="#f0629a"/>
+    <path d="M50 62.5 q-4 6 -9 2 M50 62.5 q4 6 9 2" fill="none" stroke="#5b4048" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M6 52 l14 3 M6 62 l14-2 M94 52 l-14 3 M94 62 l-14-2" stroke="#5b4048" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<div class="bg" aria-hidden="true">
+  <i style="left:6%;top:12%;font-size:26px">🌷</i><i style="left:84%;top:8%;font-size:22px;animation-delay:-2s">✨</i>
+  <i style="left:10%;top:78%;font-size:24px;animation-delay:-4s">🤍</i><i style="left:88%;top:70%;font-size:28px;animation-delay:-1s">🌷</i>
+  <i style="left:46%;top:92%;font-size:20px;animation-delay:-5s">✨</i><i style="left:70%;top:36%;font-size:18px;animation-delay:-3s">💙</i>
+</div>
+
+<div class="wrap">
+<svg class="peek" viewBox="0 0 100 86" aria-hidden="true"><use href="#cat"/></svg>
 <div class="card">
 
-<!-- ORIGINAL CONTENT UNCHANGED -->
-<div id="page1">
-<div class="cat">🐱</div>
-<h1>Little Message For You</h1>
-<p>มีอะไรเล็ก ๆ อยากให้คุณได้เห็นนะ<br><br>ปล่อยให้ใจดวงเล็ก ๆ ของคุณได้พักผ่อนนะคะ<br><br>ผมแค่อยากทำอะไรน่ารัก ๆ สักอย่าง<br>เพื่อบอกว่า...<br><br>ยังมีคนหนึ่งคนที่เป็นห่วงคุณอยู่เสมอ 🌷</p>
-<div class="envelope" onclick="startGame()">💌</div><p>กดซองเพื่อเปิด</p>
+<div id="page1" class="page on">
+  <h1>Little Message For You</h1>
+  <p>ผมมีอะไรเล็ก ๆ อยากให้คุณได้เล่นได้อ่านนะ<br><br>ขอให้คุณปล่อยให้ใจดวงเล็ก ๆ ของคุณได้พักผ่อนนะคะ<br><br>ผมทำทั้งหมดนนี้<br>เพื่อบอกว่า...<br><br>ยังมีคนหนึ่งคนที่เป็นห่วงคุณอยู่เสมอ 🌷</p>
+  <button class="envelope" id="env" onclick="startGame()" aria-label="กดซองเพื่อเปิด">💌</button>
+  <p class="small">กดซองเพื่อเปิด</p>
 </div>
 
-<div id="page2" class="page"><h2>ดูเหมือนว่าเจ้าเหมียวจะทำหัวใจตกไว้ - ช่วยเก็บหัวใจให้ครบ 5 ดวงนะคะ ๆ</h2><p>เก็บใจครบแล้วจะเปลี่ยนหน้าเลยนะ คุณอ่านก่อนเก็บหัวใจนะคะ ๆ<br><br>เจ้าเหมียวเห็นว่าคุณคงจะเหนื่อยมาก ๆ เลยใช่ไหม <br>งั้นวันนี้เจ้าเหมียวอยู่เป็นเพื่อน ให้คุณได้พักใจสักแป๊บนะ 🐱<br><br>แล้วก็ที่สำคัญเหมียวอยากบอกคุณว่าอย่าลืม...<br>"ใจดีกับตัวเองนะ" 🌷<br><br></p><h3 id="score">0 / 5</h3></div>
+<div id="page2" class="page">
+  <h2>ช่วยเก็บหัวใจให้ครบ 5 ได้ไหมคะ ๆ</h2>
+  <p>ถ้าเก็บใจครบแล้วจะเปลี่ยนหน้าเลยนะ ขอให้คุณอ่านก่อนเก็บหัวใจนะคะ ๆ<br><br>ผมเห็นว่าคุณคงจะเหนื่อยมาก ๆ เลยใช่ไหม <br>งั้นวันนี้ผมขออยู่เป็นเพื่อน ให้คุณได้พักใจสักแป๊บนึงนะ 🐱<br><br>ลองเก็บหัวใจเล็ก ๆ พวกนี้ดู เพราะทุกดวงมีความหมายว่า...
+<br>"อย่าลืมใจดีกับตัวเองนะ" 🌷</p>
+  <div class="field" id="field"></div>
+  <div class="meter" id="meter"><span>💗</span><span>💗</span><span>💗</span><span>💗</span><span>💗</span></div>
+  <p class="small" id="score">0 / 5</p>
+</div>
 
-<div id="page3" class="page"><div class="gift">🎁</div><h2>เย้! คุณเก็บหัวใจครบแย้ววววววว 🎉</h2><p>เจ้าเหมียวมีของขวัญจะให้คุณด้วยนะคะ ๆ <br><br>จริง ๆ มันเป็นแค่ข้อความเล็ก ๆ จากเจ้าเหมียวที่อยากเห็นคุณยิ้มได้ในวันนี้ 🤍</p><button onclick="show(4)">เปิดดูข้างในสิคะ ๆ🌷</button></div>
+<div id="page3" class="page">
+  <div class="gift">🎁</div>
+  <h2>เย้! คุณเก็บหัวใจครบแย้ววววววว 🎉</h2>
+  <p>ผมมีของขวัญจะให้คุณด้วยนะคะ ๆ <br><br>จริง ๆ มันเป็นแค่ข้อความเล็ก ๆ จากผมที่อยากเห็นคุณยิ้มได้ในวันนี้ 🤍</p>
+  <button class="btn" onclick="show(4)">เปิดดูข้างในสิคะ ๆ 🌷</button>
+</div>
 
-<div id="page4" class="page"><h2>ถึงคุณคนเก่ง 🤍</h2><p>ช่วงนี้เหนื่อยมากไหม<br><br>เหมียวรู้นะ ว่าช่วงนี้คุณมีหลายอย่างให้ต้องจัดการ<br>ทั้งงาน ทั้งเรื่องต่าง ๆ ที่เข้ามาในชีวิต<br><br>เหมียวเห็นคุณพยายามมาตลอดเลยนะ ᓚᘏᗢ <br>เหมียวอยากคุณบอกว่า...<br><br>คุณทำได้ดีมากแล้วนะ <br><br>ถ้าวันไหนคุณเหนื่อย ถ้าวันไหนคุณไม่ไหว อย่าลังเลเลยนะที่จะพักผ่อน<br><br>อย่าลังเลเลยนะที่จะออกมาหาของอร่อย ๆ กิน และที่สำคัญอย่าลังเลเลยที่จะออกมาหาเหมียว ๆ ตัวอ้วน ๆ ที่ไหนสักที่ที่รอให้คุณจกพุงอยุ่</p><button onclick="show(6)">เดี๋ยวเหมียวพาไปฟังเพลงนะ ๆ 💙</button></div>
+<div id="page4" class="page">
+  <h2>ถึงคุณคนเก่ง 🤍</h2>
+  <div class="letter">
+    <p>ช่วงนี้เหนื่อยมากไหม</p>
+    <p>เหมียวรู้นะ ว่าช่วงนี้คุณมีหลายอย่างให้ต้องจัดการ ทั้งงาน ทั้งเรื่องต่าง ๆ ที่เข้ามาในชีวิต</p>
+    <p>ผมเห็นคุณพยายามมาตลอดเลยนะ ᓚᘏᗢ ผมอยากบอกคุณว่า...</p>
+    <p><b style="color:var(--pink-d)">คุณทำได้ดีมากแล้วนะ</b></p>
+    <p>ถ้าวันไหนคุณเหนื่อย ถ้าวันไหนคุณไม่ไหว อย่าลังเลเลยนะที่จะพักผ่อน</p>
+    <p>อย่าลังเลเลยนะที่จะออกมาหาของอร่อย ๆ กิน และที่สำคัญอย่าลังเลเลยที่จะออกมาหาเหมียว ๆ ตัวอ้วน ๆ ที่ไหนสักที่ที่รอให้คุณจกพุงอยู่</p>
+    <p>&nbsp;</p>
+  </div>
+  <button class="btn blue" onclick="show(6)">เดี๋ยวผมพาไปฟังเพลงนะคะ ๆ 💙</button>
+</div>
 
-<div id="page6" class="page"><h2>เพลงสำหรับวันที่เหนื่อย</h2><div class="wave"><span>♪</span><span>♫</span><span>♪</span></div><p>วันนี้เหมียวเอาเพลงนี้มาฝากคุณนะคะ<br><br>บางครั้งเราอาจไม่ต้องการคำพูดอะไรเยอะมากมาย<br><br>แค่มีเพลงดี ๆ สักเพลง<br>ก็อาจช่วยให้วันนั้นดีขึ้นนิดหนึ่ง<br><br>เหมียวเลยเลือกเพลงเล็ก ๆ ไว้ให้<br>ลองฟังดูนะ 🌷</p><a href="https://youtu.be/e0aDc5gy2xo" target="_blank"><button>เปิดเพลงใน YouTube 🎶</button></a><button onclick="show(7)">ข้อความสุดท้าย 🤍</button></div>
+<div id="page6" class="page">
+  <h2>เพลงสำหรับวันที่เหนื่อย</h2>
+  <div class="disc"></div>
+  <div class="eq"><b></b><b></b><b></b><b></b><b></b></div>
+  <p>วันนี้ผมเอาเพลงนี้มาฝากคุณนะคะ<br><br>บางครั้งเราอาจไม่ต้องการคำพูดอะไรเยอะมากมาย<br><br>แค่มีเพลงดี ๆ สักเพลง<br>ก็อาจช่วยให้วันนั้นดีขึ้นนิดหนึ่ง<br><br>ผมเลยเลือกเพลงเล็ก ๆ ไว้ให้<br>ลองฟังดูนะ 🌷</p>
+  <div class="row">
+    <a class="btn" href="https://youtu.be/e0aDc5gy2xo" target="_blank" rel="noopener">เปิดเพลงใน YouTube 🎶</a>
+    <button class="btn ghost" onclick="show(7)">ข้อความสุดท้าย 🤍</button>
+  </div>
+</div>
 
-<div id="page7" class="page"><div class="cat">🐱💙</div><h2>สุดท้ายแล้ว...</h2><p>ขอบคุณคุณนะ<br>ที่ครั้งหนึ่งเคยเข้ามาเป็นส่วนหนึ่งในชีวิตผม<br><br>ไม่ว่าต่อจากนี้จะเป็นยังไง<br>ผมก็ยังอยากเห็นคุณมีความสุข<br><br>อย่าลืมดูแลตัวเองนะ<br>คุณก็พักบ้าง กินของอร่อย ๆ และก็ยิ้มเยอะ ๆ ตอนคุณยิ้มมันทำโลกทั้งใบของใครบางคนมีความหมายมากเลยนะ ๆ <br><br>ไม่ว่ายังไงก็ตามที ผมก็ยังหวังดีกับคุณเสมอนะคะ 🌷</p></div>
+<div id="page7" class="page">
+  <h2>สุดท้ายแล้ว...</h2>
+  <p>ขอบคุณคุณนะ<br>ที่ครั้งหนึ่งเคยเข้ามาเป็นส่วนหนึ่งในชีวิตผม<br><br>ไม่ว่าต่อจากนี้จะเป็นยังไง<br>ผมก็ยังอยากเห็นคุณมีความสุข<br><br>อย่าลืมดูแลตัวเองนะ<br>คุณก็พักบ้าง กินของอร่อย ๆ และก็ยิ้มเยอะ ๆ ตอนคุณยิ้มมันทำโลกทั้งใบของใครบางคนมีความหมายมากเลยนะ ๆ <br><br>ไม่ว่ายังไงก็ตามที ผมก็ยังหวังดีกับคุณเสมอนะคะ 🌷</p>
+  <div style="font-size:34px">🐱💙</div>
+</div>
 
 </div>
+</div>
+
 <script>
 let score=0;
-function hide(){for(let i=1;i<=7;i++){let x=document.getElementById("page"+i);if(x)x.style.display="none";}}
-function show(n){hide();document.getElementById("page"+n).style.display="block";}
-function startGame(){show(2);for(let i=0;i<5;i++){let h=document.createElement("div");h.innerHTML="💗";h.className="heart";h.style.left=Math.random()*80+"%";h.style.top=Math.random()*80+"%";h.onclick=()=>{h.remove();score++;document.getElementById("score").innerHTML=score+" / 5";if(score===5)show(3);};document.body.appendChild(h);}}
+function show(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  const el=document.getElementById('page'+n);
+  el.classList.add('on');
+  el.parentElement.scrollTop=0;
+}
+function startGame(){
+  document.getElementById('env').classList.add('go');
+  setTimeout(()=>{
+    show(2);
+    const field=document.getElementById('field');
+    const slots=[[6,10],[68,8],[38,42],[10,66],[70,62]];
+    slots.forEach(([x,y],i)=>{
+      const h=document.createElement('button');
+      h.className='heart';h.textContent='💗';h.setAttribute('aria-label','เก็บหัวใจ');
+      h.style.left=(x+Math.random()*6)+'%';h.style.top=(y+Math.random()*8)+'%';
+      h.style.animationDelay=(i*0.3)+'s';
+      h.onclick=()=>{
+        h.classList.add('pop');setTimeout(()=>h.remove(),350);
+        score++;
+        document.querySelectorAll('#meter span')[score-1].classList.add('on');
+        document.getElementById('score').textContent=score+' / 5';
+        if(score===5)setTimeout(()=>{show(3);confetti();},450);
+      };
+      field.appendChild(h);
+    });
+  },450);
+}
+function confetti(){
+  const set=['💗','🌷','✨','💙','🤍'];
+  for(let i=0;i<26;i++){
+    const c=document.createElement('span');c.className='conf';c.textContent=set[i%set.length];
+    c.style.left=Math.random()*100+'vw';c.style.animationDuration=(2.5+Math.random()*2.5)+'s';
+    c.style.animationDelay=(Math.random()*0.8)+'s';
+    document.body.appendChild(c);setTimeout(()=>c.remove(),6500);
+  }
+}
 </script>
 </body>
 </html>
