@@ -74,7 +74,7 @@ b{color:var(--ink)}
 .btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--btnsh)}
 .btn.rose{background:var(--rose);box-shadow:0 4px 0 var(--rosesh)}
 .btn.ghost{background:transparent;color:var(--head);border:1px solid var(--line);box-shadow:none}
-:is(.btn,.memory,.door,.route button):focus-visible{outline:3px solid var(--rose2);outline-offset:3px}
+:is(.btn,.memory,.door,.stop):focus-visible{outline:3px solid var(--rose2);outline-offset:3px}
 
 .stamp{width:108px;height:108px;border:1px dashed var(--line);border-radius:50%;display:grid;place-items:center;
   margin:8px auto 16px;background:var(--paper);transform:rotate(-5deg);font-size:50px}
@@ -96,15 +96,22 @@ b{color:var(--ink)}
 .memory.done{background:var(--done);border-color:var(--rose2);transform:rotate(-2deg)}
 .memory.done::after{content:'✓';position:absolute;right:7px;top:4px;color:var(--rose);font-weight:700}
 
-.route{position:relative;width:100%;max-width:340px;aspect-ratio:1.2/1;margin:15px auto;overflow:hidden;
-  background:linear-gradient(170deg,var(--screen),var(--paper));border:1px solid var(--line);border-radius:22px}
-.path{position:absolute;width:7px;background:var(--line);border-radius:10px;transform:rotate(22deg);left:48%;top:10%;height:80%}
-.dots{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--rose2)}
-.d1{left:27%;top:14%}.d2{left:66%;top:36%}.d3{left:33%;top:60%}.d4{left:69%;top:80%}
-.route-cat{position:absolute;right:9%;bottom:5%;font-size:30px}
-.route button{position:absolute;z-index:2;min-height:38px;border:0;border-radius:999px;padding:8px 13px;background:var(--tile);
-  color:var(--head);font-family:inherit;font-size:clamp(12px,3.4vw,14px);cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.12);touch-action:manipulation}
-.r1{left:6%;top:9%}.r2{right:6%;top:37%}.r3{left:6%;top:65%}
+.trail{position:relative;max-width:380px;margin:18px auto 6px;padding-left:46px;text-align:left}
+.trail::before{content:'';position:absolute;left:17px;top:8px;bottom:34px;border-left:2px dashed var(--rose2)}
+.walker{position:absolute;left:0;top:0;width:34px;height:34px;display:grid;place-items:center;font-size:22px;line-height:1;
+  background:var(--card);border:1px solid var(--line);border-radius:50%;z-index:2;transition:top .9s cubic-bezier(.4,0,.2,1)}
+.stop{position:relative;display:flex;align-items:center;gap:12px;width:100%;min-height:62px;margin-bottom:12px;padding:12px 14px;
+  text-align:left;font-family:inherit;color:var(--ink);background:var(--tile);border:1px solid var(--line);border-radius:16px;
+  cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.07);transition:opacity .3s,background .3s,border-color .3s;touch-action:manipulation}
+.stop::before{content:'';position:absolute;left:-33px;top:50%;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:var(--rose2)}
+.stop i{font-style:normal;font-size:26px;flex:none}
+.stop b{display:block;color:var(--head);font-size:clamp(15px,4vw,16px)}
+.stop small{display:block;font-size:12px;line-height:1.5;color:var(--muted)}
+.stop:hover:not(:disabled){border-color:var(--rose2)}
+.stop:disabled{color:var(--ink);cursor:default}
+.stop.picked{background:var(--done);border-color:var(--rose)}
+.stop.picked::before{background:var(--rose)}
+.stop.dim{opacity:.45}
 
 .letter{text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px 18px 8px;margin-top:13px}
 .letter p{line-height:2;margin:0 0 12px;font-size:clamp(15px,4vw,16px)}
@@ -131,7 +138,7 @@ b{color:var(--ink)}
 @media (min-width:700px){
   body{padding:28px}
   .wrap{max-width:520px}.card{padding-top:48px;border-radius:32px}
-  .phone,.route{max-width:380px}.memory{min-height:88px}.memory span{font-size:26px}
+  .phone{max-width:380px}.trail{max-width:420px}.memory{min-height:88px}.memory span{font-size:26px}
   .door{flex-basis:140px}.bubble{font-size:15px}
 }
 @media (min-width:1100px){.wrap{max-width:580px}.cat{width:84px;height:72px}.wrap{padding-top:36px}}
@@ -169,7 +176,7 @@ b{color:var(--ink)}
   <span class="kicker">a little message</span>
   <div class="stamp">✉️</div>
   <h1>มีบางอย่างที่ผม<br>อยากบอกคุณ</h1>
-  <p>ผมคิดอยู่นานมากว่าจะส่งสิ่งนี้ให้คุณดีไหม<br><br>เพราะมันไม่ใช่แค่ข้อความธรรมดา ๆ</p>
+  <p>ผมคิดอยู่นานมากว่าจะส่งสิ่งนี้ให้คุณดีไหม<br><br>เพราะมันไม่ใช่แค่ข้อความธรรมดา ๆ</p>
   <div class="divider"></div>
   <p class="small">ถ้าคุณพร้อม...ลองเปิดดูนะ</p>
   <button class="btn rose" data-go="2">เปิดข้อความ 💌</button>
@@ -182,7 +189,7 @@ b{color:var(--ink)}
     <div class="status">20:20 • chat</div>
     <div class="bubble left">ช่วงนี้เป็นยังไงบ้าง</div>
     <div class="bubble right">...</div>
-    <div class="bubble left">จริง ๆ แล้วผมมีอะไรอยากบอก</div>
+    <div class="bubble left">จริง ๆ แล้วผมมีอะไรอยากบอก</div>
     <div class="bubble right">อะไรเหรอ</div>
     <div class="bubble left">ผมคิดถึงเรา</div>
     <div class="typing">กำลังพิมพ์...</div>
@@ -192,9 +199,9 @@ b{color:var(--ink)}
 </section>
 
 <section id="page3" class="page" tabindex="-1">
-  <span class="kicker">memory pieces</span>
-  <h2>ช่วยต่อความทรงจำให้ผมหน่อย 🧩</h2>
-  <p>กดชิ้นส่วนให้ครบ 6 ชิ้น<br>เพราะบางเรื่อง ถึงเวลาจะผ่านไปแล้ว แต่ก็ยังมีความหมาย</p>
+  <span class="kicker">memories</span>
+  <h2>คุณยังจำอะไรระหว่างเราได้บ้าง?</h2>
+  <p>แตะเรื่องที่คุณยังจำได้<br>เลือกกี่อันก็ได้ หรือไม่เลือกเลยก็ได้นะ<br>บางเรื่อง แม้ว่าเวลาจะผ่านไปแล้ว แต่มันก็ยังมีความหมาย</p>
   <div class="memory-board">
     <button class="memory"><span>☁️</span><small>วันธรรมดา</small></button>
     <button class="memory"><span>☕</span><small>บทสนทนา</small></button>
@@ -203,8 +210,8 @@ b{color:var(--ink)}
     <button class="memory"><span>🐱</span><small>รอยยิ้ม</small></button>
     <button class="memory"><span>♡</span><small>ความรู้สึก</small></button>
   </div>
-  <p class="small" id="pieceScore" aria-live="polite">0 / 6</p>
-  <div id="pieceNext"></div>
+  <p class="small" id="pieceScore" aria-live="polite">จำได้กี่เรื่องก็ได้ ไม่ต้องครบนะ</p>
+  <button class="btn rose" data-go="4">ไปต่อ →</button>
 </section>
 
 <section id="page4" class="page" tabindex="-1">
@@ -216,8 +223,8 @@ b{color:var(--ink)}
     <p>แต่ถ้าผมมีโอกาสอีกครั้ง...</p>
     <p><b class="highlight">ผมอยากทำให้มันดีกว่าเดิม</b></p>
   </div>
-  <p>เพราะผมไม่ได้อยากกลับไปหา “วันเก่า ๆ”</p>
-  <p><b>ผมอยากมีวันใหม่ ๆ กับคุณ</b></p>
+  <p>เพราะผมไม่ได้อยากกลับไปหา “วันเก่า ๆ”</p>
+  <p><b>ผมอยากมีวันใหม่ ๆ กับคุณ</b></p>
   <button class="btn rose" data-go="5">ไปต่อ 🌷</button>
 </section>
 
@@ -225,20 +232,18 @@ b{color:var(--ink)}
   <span class="kicker">one more chance</span>
   <h2>ลองเลือกทางให้เราอีกครั้ง</h2>
   <p>ไม่ว่าคุณจะเลือกอันไหน<br>มันไม่ได้เปลี่ยนอดีต แต่บางทีเราอาจเลือกอนาคตได้</p>
-  <div class="route">
-    <div class="path"></div>
-    <div class="dots d1"></div><div class="dots d2"></div><div class="dots d3"></div><div class="dots d4"></div>
-    <button class="r1">ทางเดิม</button>
-    <button class="r2">ทางที่ดีขึ้น</button>
-    <button class="r3">ทางกลับไปหาเธอ</button>
-    <div class="route-cat" aria-hidden="true">🐱</div>
+  <div class="trail">
+    <div class="walker" id="walker" aria-hidden="true">🐱</div>
+    <button class="stop"><i>🍂</i><span><b>ทางเดิม</b><small>เดินแบบที่เคยเป็น</small></span></button>
+    <button class="stop"><i>🌱</i><span><b>ทางที่ดีขึ้น</b><small>เรียนรู้จากเรื่องที่ผ่านมา</small></span></button>
+    <button class="stop"><i>🌷</i><span><b>ทางกลับมาหากัน</b><small>เริ่มต้นใหม่อีกครั้ง</small></span></button>
   </div>
   <p id="routeText" class="small" aria-live="polite">เลือกทางไหนก็ได้ครับ</p>
 </section>
 
 <section id="page6" class="page" tabindex="-1">
   <span class="kicker">the part I was afraid to say</span>
-  <h2>จริง ๆ แล้ว...</h2>
+  <h2>จริง ๆ แล้ว...</h2>
   <div class="letter">
     <p>ผมทำทั้งหมดนี้ไม่ใช่เพราะอยากให้คุณสงสาร</p>
     <p>และไม่ได้อยากบังคับให้คุณต้องตอบอะไรตอนนี้</p>
@@ -247,16 +252,16 @@ b{color:var(--ink)}
     <p>และถ้ายังมีพื้นที่เล็ก ๆ ให้ผมอยู่ในชีวิตคุณ...</p>
     <p><b>ผมอยากลองเริ่มต้นกับคุณใหม่อีกครั้ง</b></p>
   </div>
-  <button class="btn rose" data-go="7">เปิดประตูให้ผมไหม?</button>
+  <button class="btn rose" data-go="7">คุณจะเปิดประตูหัวใจให้ผมไหม?</button>
 </section>
 
 <section id="page7" class="page" tabindex="-1">
   <span class="kicker">your choice</span>
-  <h2>คุณจะเปิดประตูไหม?</h2>
-  <p>ไม่ต้องรีบตอบก็ได้นะ<br>ผมอยากให้คำตอบเป็นสิ่งที่คุณรู้สึกจริง ๆ</p>
+  <h2>คุณจะเปิดประตูบานไหม?</h2>
+  <p>ไม่ต้องรีบตอบก็ได้นะ<br>ผมอยากให้คำตอบเป็นสิ่งที่คุณรู้สึกจริง ๆ</p>
   <div class="doors">
-    <button class="door soft" id="yes">ลองเปิดดู<br><br>🌷</button>
-    <button class="door" id="wait">ขอคิดดูก่อน<br><br>🤍</button>
+    <button class="door soft" id="yes">ลองเปิดใจให้กันดูอีกสักครั้ง<br><br>🌷</button>
+    <button class="door" id="wait">ยังไม่พร้อมที่จะเริ่มต้นใหม่<br><br>🤍</button>
   </div>
   <div class="answer" id="answer" aria-live="polite"></div>
 </section>
@@ -264,7 +269,7 @@ b{color:var(--ink)}
 <section id="page8" class="page" tabindex="-1">
   <div class="final-cat">🐱</div>
   <div class="flower">🌷</div>
-  <h2>ขอบคุณที่เปิดประตูให้ผม</h2>
+  <h2>ขอบคุณที่เปิดประตูหัวใจให้ผมอีกคร้ง</h2>
   <div class="letter">
     <p>ผมไม่สัญญาว่าทุกอย่างจะสมบูรณ์แบบ</p>
     <p>แต่ผมสัญญาว่าถ้าเราได้เริ่มใหม่ ผมจะตั้งใจกับมันมากกว่าเดิม</p>
@@ -279,12 +284,12 @@ b{color:var(--ink)}
 
 <section id="page9" class="page" tabindex="-1">
   <div class="final-cat">🐱</div>
-  <h2>ไม่เป็นไรนะ</h2>
+  <h2>ผมเข้าใจและเคารพในการตัดสินใจนะ</h2>
   <div class="letter">
-    <p>ถ้าคุณยังไม่พร้อม ผมเข้าใจจริง ๆ</p>
+    <p>ถ้าคุณยังไม่พร้อม ผมเข้าใจจริง ๆ</p>
     <p>คุณไม่จำเป็นต้องตอบเพราะเกมนี้ และไม่จำเป็นต้องรีบตัดสินใจ</p>
     <p>ผมดีใจที่อย่างน้อยคุณได้รู้ว่าผมรู้สึกยังไง</p>
-    <p><b class="highlight">ดูแลตัวเองดี ๆ นะ</b></p>
+    <p><b class="highlight">ดูแลตัวเองดี ๆ นะ</b></p>
   </div>
   <p>และไม่ว่าคำตอบจะเป็นยังไง<br>ขอบคุณสำหรับทุกความทรงจำของเรานะ 🤍</p>
 </section>
@@ -296,7 +301,7 @@ b{color:var(--ink)}
 (function(){
   var $=function(s,r){return (r||document).querySelector(s)};
   var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
-  var pieces=0,routed=false;
+  var pieces=0,routed=false,allDone=false;
 
   function show(n){
     $$('.page').forEach(function(p){p.classList.remove('on')});
@@ -327,27 +332,28 @@ b{color:var(--ink)}
 
   $$('.memory').forEach(function(btn){
     btn.addEventListener('click',function(){
-      if(btn.classList.contains('done'))return;
-      btn.classList.add('done');
-      pieces++;
-      $('#pieceScore').textContent=pieces+' / 6';
-      if(pieces===6){
-        $('#pieceNext').innerHTML=
-          '<p style="color:var(--rose);font-weight:600">ความทรงจำกลับมาเป็นภาพเดียวกันแล้ว 🤍</p>'+
-          '<button class="btn rose" id="toLetter">ดูสิ่งที่ผมอยากบอก →</button>';
-        $('#toLetter').addEventListener('click',function(){show(4)});
-        confetti(['♡','✦','🌷','🤍']);
+      var on=btn.classList.toggle('done');
+      btn.setAttribute('aria-pressed',on);
+      pieces+=on?1:-1;
+      var t=$('#pieceScore');
+      if(pieces===0)t.textContent='ไม่จำก็ไม่เป็นไรนะ';
+      else if(pieces===6){
+        t.textContent='จำได้ครบเลยนะ 🤍';
+        if(!allDone){allDone=true;confetti(['♡','✦','🌷','🤍'])}
       }
+      else t.textContent='คุณจำได้ '+pieces+' เรื่อง 🤍';
     });
+    btn.setAttribute('aria-pressed','false');
   });
 
-  $$('.route button').forEach(function(b){
+  $$('.stop').forEach(function(b){
     b.addEventListener('click',function(){
       if(routed)return;
       routed=true;
-      $$('.route button').forEach(function(x){x.disabled=true});
+      $$('.stop').forEach(function(x){x.disabled=true;x.classList.add(x===b?'picked':'dim')});
+      $('#walker').style.top=(b.offsetTop+b.offsetHeight/2-17)+'px';
       $('#routeText').textContent='สุดท้ายแล้ว...เส้นทางของเราก็พามาถึงตรงนี้อยู่ดี';
-      setTimeout(function(){show(6)},1100);
+      setTimeout(function(){show(6)},2000);
     });
   });
 
@@ -359,7 +365,7 @@ b{color:var(--ink)}
   $('#yes').addEventListener('click',function(){
     lockDoors(this);
     $('#answer').innerHTML=
-      '<p style="color:var(--rose);font-weight:600">ขอบคุณนะครับ...จริง ๆ 🤍</p>'+
+      '<p style="color:var(--rose);font-weight:600">ขอบคุณนะครับ...จริง ๆ 🤍</p>'+
       '<button class="btn rose" id="toFinal">เปิดจดหมายสุดท้าย →</button>';
     $('#toFinal').addEventListener('click',function(){show(8)});
     confetti(['🌷','♡','✨','🤍']);
