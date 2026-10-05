@@ -104,6 +104,20 @@ p{margin:12px 0;line-height:1.95;font-size:clamp(15px,4vw,17px);color:var(--soft
 .eq b:nth-child(5){animation-delay:.8s}
 @keyframes eq{0%,100%{height:8px}50%{height:28px}}
 
+
+.menu{display:flex;flex-direction:column;gap:6px;align-items:center}
+.menu .btn{width:100%;max-width:290px}
+.back{margin-top:14px;font-size:14px;padding:9px 20px}
+.tcard{margin:14px 0 4px;min-height:150px;display:grid;place-items:center;padding:18px;border-radius:22px;background:#fff;border:2px dashed var(--pink);font-size:clamp(16px,4.2vw,18px);line-height:1.9;color:var(--ink)}
+.tcard.flip{animation:pop .45s cubic-bezier(.3,1.5,.5,1)}
+.bigcat{display:block;width:150px;height:130px;margin:10px auto 0;cursor:pointer;border:0;background:none;padding:0;transition:transform .1s;-webkit-tap-highlight-color:transparent}
+.bigcat:active{transform:scale(.9,1.08)}
+.bigcat svg{width:100%;height:100%}
+.say{min-height:56px;font-size:16px;color:var(--pink-d);font-weight:600}
+.fl{position:absolute;pointer-events:none;font-size:22px;animation:up 1s forwards}
+@keyframes up{to{transform:translateY(-70px);opacity:0}}
+.breath{width:130px;height:130px;margin:16px auto 6px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:18px;background:radial-gradient(circle,var(--blue),var(--blue-d));box-shadow:0 0 0 10px #d6ebff;transition:transform 4s ease-in-out}
+.breath.in{transform:scale(1.35)}
 .conf{position:fixed;top:-30px;font-size:24px;z-index:9;pointer-events:none;animation:fall linear forwards}
 @keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
 
@@ -177,7 +191,44 @@ p{margin:12px 0;line-height:1.95;font-size:clamp(15px,4vw,17px);color:var(--soft
     <p>อย่าลังเลเลยนะที่จะออกมาหาของอร่อย ๆ กิน และที่สำคัญอย่าลังเลเลยที่จะออกมาหาเหมียว ๆ ตัวอ้วน ๆ ที่ไหนสักที่ที่รอให้คุณจกพุงอยู่</p>
     <p>&nbsp;</p>
   </div>
-  <button class="btn blue" onclick="show(6)">เดี๋ยวผมพาไปฟังเพลงนะคะ ๆ 💙</button>
+  <button class="btn blue" onclick="show(5)">ยังมีของเล็ก ๆ อีกนะคะ ๆ 💙</button>
+</div>
+
+
+<div id="page5" class="page">
+  <h2>ของเล็ก ๆ เพิ่มเติม 🎀</h2>
+  <p>เลือกเล่นได้ตามใจเลยนะคะ ๆ ไม่มีแพ้ ไม่มีชนะ มีแต่ให้ใจได้พัก</p>
+  <div class="menu">
+    <button class="btn" onclick="show(8);drawCard()">🎴 สุ่มการ์ดกำลังใจ</button>
+    <button class="btn blue" onclick="show(9)">🐱 จกพุงเหมียว</button>
+    <button class="btn ghost" onclick="show(10)">🫧 หายใจไปกับผม</button>
+    <button class="btn" onclick="show(6)">🎶 ไปฟังเพลงต่อ</button>
+  </div>
+</div>
+
+<div id="page8" class="page">
+  <h2>การ์ดกำลังใจประจำวัน 🎴</h2>
+  <div class="tcard" id="tcard">กดปุ่มด้านล่างเพื่อสุ่มการ์ดนะ</div>
+  <button class="btn" onclick="drawCard()">สุ่มใบใหม่ ✨</button><br>
+  <button class="btn ghost back" onclick="show(5)">← กลับ</button>
+</div>
+
+<div id="page9" class="page" style="position:relative">
+  <h2>จกพุงเหมียว 🐾</h2>
+  <p class="small">แตะที่เหมียวได้เลยนะ</p>
+  <button class="bigcat" id="bigcat" aria-label="จกพุงเหมียว"><svg viewBox="0 0 100 86"><use href="#cat"/></svg></button>
+  <div class="say" id="say">เหมียวรออยู่นะ...</div>
+  <p class="small" id="pcount">จกไป 0 ครั้ง</p>
+  <button class="btn ghost back" onclick="show(5)">← กลับ</button>
+</div>
+
+<div id="page10" class="page">
+  <h2>หายใจไปกับผม 🫧</h2>
+  <p class="small">หายใจเข้า 4 วิ ออก 4 วิ ทำสัก 5 รอบก็พอนะ</p>
+  <div class="breath" id="breath">พร้อมนะ</div>
+  <p class="small" id="bcount"></p>
+  <button class="btn blue" id="bbtn" onclick="toggleBreath()">เริ่มเลย</button><br>
+  <button class="btn ghost back" onclick="stopBreath();show(5)">← กลับ</button>
 </div>
 
 <div id="page6" class="page">
@@ -238,6 +289,44 @@ function confetti(){
     c.style.animationDelay=(Math.random()*0.8)+'s';
     document.body.appendChild(c);setTimeout(()=>c.remove(),6500);
   }
+}
+
+const cheers=["วันนี้ไม่ต้องเก่งที่สุดก็ได้ แค่ผ่านวันนี้ไปได้ก็เก่งมากแล้ว 🌷","เหนื่อยได้ พักได้ แต่ห้ามลืมว่าคุณมีค่านะ 🤍","ทุกก้าวเล็ก ๆ ที่คุณเดินมา มันนับหมดเลยนะ ✨","ถ้าวันนี้ยังไม่ดี พรุ่งนี้ค่อยลองใหม่ได้เสมอ 🐱","ดื่มน้ำสักแก้วก่อนนะ แล้วค่อยสู้ต่อ 💧","คุณไม่ต้องแบกทุกอย่างไว้คนเดียวนะ 💙","ขอให้วันนี้มีของอร่อย ๆ รอคุณอยู่ 🍰","ใจดีกับตัวเองให้เหมือนที่คุณใจดีกับคนอื่นนะ 🌷","คุณเติบโตขึ้นเยอะกว่าที่คุณคิดเลยนะ 🌱","พักสายตา ยืดตัว แล้วยิ้มให้ตัวเองสักทีนะ 😊","ไม่เป็นไรเลยถ้าวันนี้ทำได้แค่นี้ มันพอแล้ว 🤍","เหมียวบอกว่า... คุณเก่งมาก (เหมียว~) 🐾"];
+let last=-1;
+function drawCard(){
+  let i;do{i=Math.floor(Math.random()*cheers.length)}while(i===last);last=i;
+  const t=document.getElementById('tcard');t.textContent=cheers[i];
+  t.classList.remove('flip');void t.offsetWidth;t.classList.add('flip');
+}
+let pats=0;
+const purrs=["ครืด ๆ ๆ 😽","เมี้ยว~ 🐱","แกร่ก ๆ ชอบจัง 💗","ขอจกอีกนะ 🐾","ง่วงละ... 😴","หงายพุงให้เลย! 🐈"];
+document.addEventListener('DOMContentLoaded',()=>{
+  const c=document.getElementById('bigcat');
+  c.addEventListener('click',e=>{
+    pats++;
+    document.getElementById('pcount').textContent='จกไป '+pats+' ครั้ง';
+    let m=purrs[pats%purrs.length];
+    if(pats===10)m='10 ครั้งแล้ว! เหมียวรักคุณเลย 💕';
+    if(pats===30){m='30 ครั้ง! คุณคือเพื่อนแท้ของเหมียว 🏆';confetti();}
+    document.getElementById('say').textContent=m;
+    const f=document.createElement('span');f.className='fl';f.textContent=['💗','🐾','✨'][pats%3];
+    f.style.left=(30+Math.random()*40)+'%';f.style.top='120px';
+    document.getElementById('page9').appendChild(f);setTimeout(()=>f.remove(),1000);
+  });
+});
+let bt=null,bn=0;
+function stopBreath(){clearInterval(bt);bt=null;const b=document.getElementById('breath');b.classList.remove('in');b.textContent='พร้อมนะ';document.getElementById('bbtn').textContent='เริ่มเลย';}
+function toggleBreath(){
+  if(bt){stopBreath();return}
+  const b=document.getElementById('breath'),n=document.getElementById('bcount');
+  document.getElementById('bbtn').textContent='หยุด';bn=0;let inh=true;
+  const step=()=>{
+    if(inh){b.classList.add('in');b.textContent='หายใจเข้า';}
+    else{b.classList.remove('in');b.textContent='หายใจออก';bn++;n.textContent='ครบ '+bn+' รอบแล้ว';
+      if(bn>=5){stopBreath();b.textContent='เก่งมาก 💙';n.textContent='ครบ 5 รอบแล้วนะ ใจเบาลงไหมคะ';return}}
+    inh=!inh;
+  };
+  step();bt=setInterval(step,4000);
 }
 </script>
 </body>
