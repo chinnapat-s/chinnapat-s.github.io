@@ -1,333 +1,144 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Little Message For You 💌</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --pink:#ff8fb8; --pink-d:#f0629a; --pink-l:#ffe3ee; --blue:#8ec5f5; --blue-d:#5b9bd5;
-  --cream:#fffaf3; --ink:#5b4048; --soft:#7a6068; --line:#ffc9dd;
-}
-*{box-sizing:border-box}
-html,body{height:100%;margin:0}
-body{
-  font-family:'Mali','Sarabun','Noto Sans Thai',Tahoma,sans-serif;color:var(--ink);
-  display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden;
-  background:
-    radial-gradient(circle,#fff 2.5px,transparent 3px) 0 0/28px 28px,
-    linear-gradient(160deg,#ffdfec,#e2f1ff);
-}
-.bg{position:fixed;inset:0;pointer-events:none;overflow:hidden}
-.bg i{position:absolute;font-style:normal;opacity:.55;animation:drift 9s ease-in-out infinite}
-@keyframes drift{50%{transform:translateY(-16px) rotate(8deg)}}
-
-.wrap{position:relative;width:100%;max-width:420px;padding-top:46px}
-.peek{position:absolute;top:0;left:50%;width:92px;margin-left:-46px;z-index:2;animation:bob 3s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(-6px)}}
-.card{
-  position:relative;background:var(--cream);border:3px solid var(--pink);border-radius:34px;
-  padding:52px clamp(20px,5vw,30px) 28px;text-align:center;max-height:calc(100vh - 90px);overflow-y:auto;
-  box-shadow:0 8px 0 var(--line),0 22px 40px rgba(240,98,154,.18);
-}
-.page{display:none}
-.page.on{display:block;animation:pop .45s cubic-bezier(.3,1.5,.5,1)}
-@keyframes pop{from{opacity:0;transform:scale(.92) translateY(10px)}}
-
-h1{margin:8px 0 4px;color:var(--pink-d);font-size:clamp(26px,7vw,32px);line-height:1.3}
-h2{margin:6px 0 4px;color:var(--blue-d);font-size:clamp(19px,5vw,24px);line-height:1.4}
-p{margin:12px 0;line-height:1.95;font-size:clamp(15px,4vw,17px);color:var(--soft)}
-.small{font-size:14px;margin:6px 0 0}
-
-.btn{
-  display:inline-block;margin-top:16px;padding:12px 26px;border:0;border-radius:999px;cursor:pointer;
-  font:600 clamp(15px,4vw,17px) 'Mali',Tahoma,sans-serif;color:#fff;background:var(--pink-d);text-decoration:none;
-  box-shadow:0 5px 0 #c94a7f;transition:transform .12s,box-shadow .12s;
-}
-.btn:hover{transform:translateY(-2px)}
-.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #c94a7f}
-.btn.blue{background:var(--blue-d);box-shadow:0 5px 0 #3f78ae}
-.btn.blue:active{box-shadow:0 1px 0 #3f78ae}
-.btn.ghost{background:#fff;color:var(--pink-d);border:2px solid var(--pink);box-shadow:0 5px 0 var(--line)}
-.btn:focus-visible,.envelope:focus-visible{outline:3px solid var(--blue-d);outline-offset:3px}
-.row{display:flex;flex-direction:column;align-items:center;gap:4px}
-
-.envelope{
-  display:inline-block;font-size:clamp(70px,22vw,96px);cursor:pointer;background:none;border:0;padding:0;
-  animation:wiggle 2.2s ease-in-out infinite;filter:drop-shadow(0 8px 6px rgba(240,98,154,.25));
-}
-.envelope.go{animation:open .5s forwards}
-@keyframes wiggle{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg) scale(1.05)}}
-@keyframes open{to{transform:scale(1.5) rotate(0);opacity:0}}
-
-/* heart game */
-.field{
-  position:relative;height:190px;margin:14px 0 6px;border-radius:24px;
-  background:repeating-linear-gradient(45deg,#fff 0 12px,#fff3f8 12px 24px);border:2px dashed var(--line);
-}
-.heart{
-  position:absolute;font-size:38px;line-height:1;cursor:pointer;border:0;background:none;padding:4px;
-  animation:float 2s ease-in-out infinite;
-}
-.heart.pop{animation:burst .35s forwards;pointer-events:none}
-@keyframes float{50%{transform:translateY(-10px) scale(1.08)}}
-@keyframes burst{to{transform:scale(1.9);opacity:0}}
-.meter{display:flex;justify-content:center;gap:8px;font-size:26px}
-.meter span{filter:grayscale(1);opacity:.35;transition:.3s}
-.meter span.on{filter:none;opacity:1;transform:scale(1.15)}
-
-.gift{font-size:clamp(70px,22vw,92px);animation:gift 1.4s ease-in-out infinite}
-@keyframes gift{50%{transform:scale(1.12) rotate(-4deg)}}
-
-/* letter */
-.letter{
-  text-align:left;background:#fff;border-radius:20px;padding:6px 18px;margin-top:8px;border:2px solid var(--line);
-  background-image:repeating-linear-gradient(transparent 0 33px,#ffe9f1 33px 34px);
-}
-.letter p{line-height:34px;margin:0;padding:14px 0 0}
-
-/* music */
-.disc{
-  width:120px;height:120px;margin:12px auto 4px;border-radius:50%;position:relative;
-  background:radial-gradient(circle,var(--pink) 0 16%,#3b2a30 17% 44%,#54393f 45% 47%,#3b2a30 48% 70%,#54393f 71% 73%,#3b2a30 74%);
-  animation:spin 5s linear infinite;box-shadow:0 8px 16px rgba(0,0,0,.18);
-}
-.disc::after{content:'🎵';position:absolute;inset:0;display:grid;place-items:center;font-size:24px}
-@keyframes spin{to{transform:rotate(360deg)}}
-.eq{display:flex;justify-content:center;align-items:flex-end;gap:5px;height:30px;margin-top:10px}
-.eq b{width:7px;border-radius:4px;background:var(--pink);animation:eq 1s ease-in-out infinite}
-.eq b:nth-child(2){animation-delay:.2s;background:var(--blue)}
-.eq b:nth-child(3){animation-delay:.4s}
-.eq b:nth-child(4){animation-delay:.6s;background:var(--blue)}
-.eq b:nth-child(5){animation-delay:.8s}
-@keyframes eq{0%,100%{height:8px}50%{height:28px}}
-
-
-.menu{display:flex;flex-direction:column;gap:6px;align-items:center}
-.menu .btn{width:100%;max-width:290px}
-.back{margin-top:14px;font-size:14px;padding:9px 20px}
-.tcard{margin:14px 0 4px;min-height:150px;display:grid;place-items:center;padding:18px;border-radius:22px;background:#fff;border:2px dashed var(--pink);font-size:clamp(16px,4.2vw,18px);line-height:1.9;color:var(--ink)}
-.tcard.flip{animation:pop .45s cubic-bezier(.3,1.5,.5,1)}
-.bigcat{display:block;width:150px;height:130px;margin:10px auto 0;cursor:pointer;border:0;background:none;padding:0;transition:transform .1s;-webkit-tap-highlight-color:transparent}
-.bigcat:active{transform:scale(.9,1.08)}
-.bigcat svg{width:100%;height:100%}
-.say{min-height:56px;font-size:16px;color:var(--pink-d);font-weight:600}
-.fl{position:absolute;pointer-events:none;font-size:22px;animation:up 1s forwards}
-@keyframes up{to{transform:translateY(-70px);opacity:0}}
-.breath{width:130px;height:130px;margin:16px auto 6px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:18px;background:radial-gradient(circle,var(--blue),var(--blue-d));box-shadow:0 0 0 10px #d6ebff;transition:transform 4s ease-in-out}
-.breath.in{transform:scale(1.35)}
-.conf{position:fixed;top:-30px;font-size:24px;z-index:9;pointer-events:none;animation:fall linear forwards}
-@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
-
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080a0f">
+  <title>Under Construction — Personal Space</title>
+  <style>
+    :root {
+      --bg: #080a0f;
+      --text: #f2f5f9;
+      --muted: #8a93a3;
+      --accent: #6cf6ff;
+      --line: rgba(255,255,255,.11);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; color: var(--text);
+      background:
+        radial-gradient(ellipse at 50% 40%, rgba(24,75,93,.22), transparent 52%),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .22;
+      background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+    .shell { min-height: 100vh; display: flex; flex-direction: column; padding: 32px clamp(22px, 6vw, 88px); position: relative; }
+    header, footer { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
+    .brand { font-size: 12px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; }
+    .brand span { color: var(--accent); }
+    .status { color: var(--muted); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; display: flex; align-items: center; gap: 9px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 14px var(--accent); animation: pulse 1.5s infinite; }
+    main { flex: 1; display: grid; place-items: center; padding: 60px 0; }
+    .content { width: min(850px, 100%); }
+    .eyebrow { color: var(--accent); font-size: 11px; letter-spacing: .28em; font-weight: 700; text-transform: uppercase; margin-bottom: 25px; }
+    h1 { margin: 0; font-size: clamp(42px, 8.7vw, 100px); line-height: .94; letter-spacing: -.075em; font-weight: 850; text-transform: uppercase; }
+    h1 .outline { color: transparent; -webkit-text-stroke: 1px rgba(242,245,249,.65); }
+    .subline { margin-top: 30px; font-size: clamp(15px, 2vw, 19px); color: #c4cbd5; line-height: 1.7; }
+    #typed { color: var(--accent); }
+    .cursor { display: inline-block; width: 8px; height: 1em; background: var(--accent); vertical-align: -2px; margin-left: 4px; animation: blink .8s steps(2) infinite; }
+    .progress-wrap { margin-top: 48px; max-width: 470px; }
+    .progress-meta { display: flex; justify-content: space-between; color: var(--muted); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 12px; }
+    .track { height: 3px; background: rgba(255,255,255,.12); overflow: hidden; }
+    .bar { width: 0; height: 100%; background: var(--accent); box-shadow: 0 0 18px var(--accent); animation: load 2.3s ease-out forwards; }
+    .note { margin-top: 18px; color: #626c7c; font-size: 12px; letter-spacing: .04em; }
+    footer { border-top: 1px solid var(--line); padding-top: 22px; color: #697383; font-size: 10px; letter-spacing: .13em; text-transform: uppercase; }
+    .coordinates { color: #4c5665; }
+    .orb { position: absolute; width: 300px; height: 300px; right: 9%; top: 30%; border: 1px solid rgba(108,246,255,.12); border-radius: 50%; pointer-events: none; animation: rotate 24s linear infinite; }
+    .orb::before, .orb::after { content: ""; position: absolute; inset: 25px; border: 1px dashed rgba(108,246,255,.15); border-radius: 50%; }
+    .orb::after { inset: 65px; border-style: solid; border-color: rgba(108,246,255,.1); }
+    @keyframes pulse { 50% { opacity: .35; } }
+    @keyframes blink { to { opacity: 0; } }
+    @keyframes load { to { width: 68%; } }
+    @keyframes rotate { to { transform: rotate(360deg); } }
+    @media (max-width: 650px) {
+      .shell { padding: 24px 22px; }
+      header { align-items: flex-start; }
+      .status { font-size: 9px; letter-spacing: .08em; }
+      .orb { width: 180px; height: 180px; right: -65px; top: 22%; opacity: .6; }
+      main { padding: 55px 0; }
+      footer { align-items: flex-start; flex-direction: column; gap: 9px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
 </head>
 <body>
+  <div class="shell">
+    <header>
+      <div class="brand">CHINNAPAT<span>.</span>SPACE</div>
+      <div class="status"><span class="dot"></span> System status: rebuilding</div>
+    </header>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="cat" viewBox="0 0 100 86">
-    <polygon points="12,40 18,6 46,24" fill="#ffd9b8" stroke="#5b4048" stroke-width="3" stroke-linejoin="round"/>
-    <polygon points="88,40 82,6 54,24" fill="#ffd9b8" stroke="#5b4048" stroke-width="3" stroke-linejoin="round"/>
-    <polygon points="20,32 22,16 34,25" fill="#ffb3cc"/>
-    <polygon points="80,32 78,16 66,25" fill="#ffb3cc"/>
-    <ellipse cx="50" cy="50" rx="40" ry="32" fill="#ffe6cf" stroke="#5b4048" stroke-width="3"/>
-    <ellipse cx="34" cy="50" rx="4.5" ry="6" fill="#5b4048"/>
-    <ellipse cx="66" cy="50" rx="4.5" ry="6" fill="#5b4048"/>
-    <circle cx="35.6" cy="47.6" r="1.7" fill="#fff"/>
-    <circle cx="67.6" cy="47.6" r="1.7" fill="#fff"/>
-    <ellipse cx="22" cy="61" rx="7" ry="4.5" fill="#ffb3cc" opacity=".8"/>
-    <ellipse cx="78" cy="61" rx="7" ry="4.5" fill="#ffb3cc" opacity=".8"/>
-    <path d="M46 58 h8 l-4 4.5z" fill="#f0629a"/>
-    <path d="M50 62.5 q-4 6 -9 2 M50 62.5 q4 6 9 2" fill="none" stroke="#5b4048" stroke-width="2.4" stroke-linecap="round"/>
-    <path d="M6 52 l14 3 M6 62 l14-2 M94 52 l-14 3 M94 62 l-14-2" stroke="#5b4048" stroke-width="2" stroke-linecap="round"/>
-  </symbol>
-</svg>
+    <div class="orb" aria-hidden="true"></div>
 
-<div class="bg" aria-hidden="true">
-  <i style="left:6%;top:12%;font-size:26px">🌷</i><i style="left:84%;top:8%;font-size:22px;animation-delay:-2s">✨</i>
-  <i style="left:10%;top:78%;font-size:24px;animation-delay:-4s">🤍</i><i style="left:88%;top:70%;font-size:28px;animation-delay:-1s">🌷</i>
-  <i style="left:46%;top:92%;font-size:20px;animation-delay:-5s">✨</i><i style="left:70%;top:36%;font-size:18px;animation-delay:-3s">💙</i>
-</div>
+    <main>
+      <section class="content">
+        <div class="eyebrow">/// A new chapter is being written</div>
+        <h1>Under<br><span class="outline">Construction</span></h1>
+        <p class="subline">
+          Not gone. Just getting better.<br>
+          <span id="typed">Something new is loading.</span><span class="cursor" aria-hidden="true"></span>
+        </p>
 
-<div class="wrap">
-<svg class="peek" viewBox="0 0 100 86" aria-hidden="true"><use href="#cat"/></svg>
-<div class="card">
+        <div class="progress-wrap">
+          <div class="progress-meta"><span>Building something different</span><span>In progress</span></div>
+          <div class="track"><div class="bar"></div></div>
+          <div class="note">Good things take time. See you on the other side.</div>
+        </div>
+      </section>
+    </main>
 
-<div id="page1" class="page on">
-  <h1>Little Message For You</h1>
-  <p>ผมมีอะไรเล็ก ๆ อยากให้คุณได้เล่นได้อ่านนะ<br><br>ขอให้คุณปล่อยให้ใจดวงเล็ก ๆ ของคุณได้พักผ่อนนะคะ<br><br>ผมทำทั้งหมดนนี้<br>เพื่อบอกว่า...<br><br>ยังมีคนหนึ่งคนที่เป็นห่วงคุณอยู่เสมอ 🌷</p>
-  <button class="envelope" id="env" onclick="startGame()" aria-label="กดซองเพื่อเปิด">💌</button>
-  <p class="small">กดซองเพื่อเปิด</p>
-</div>
-
-<div id="page2" class="page">
-  <h2>ช่วยเก็บหัวใจให้ครบ 5 ได้ไหมคะ ๆ</h2>
-  <p>ถ้าเก็บใจครบแล้วจะเปลี่ยนหน้าเลยนะ ขอให้คุณอ่านก่อนเก็บหัวใจนะคะ ๆ<br><br>ผมเห็นว่าคุณคงจะเหนื่อยมาก ๆ เลยใช่ไหม <br>งั้นวันนี้ผมขออยู่เป็นเพื่อน ให้คุณได้พักใจสักแป๊บนึงนะ 🐱<br><br>ลองเก็บหัวใจเล็ก ๆ พวกนี้ดู เพราะทุกดวงมีความหมายว่า...
-<br>"อย่าลืมใจดีกับตัวเองนะ" 🌷</p>
-  <div class="field" id="field"></div>
-  <div class="meter" id="meter"><span>💗</span><span>💗</span><span>💗</span><span>💗</span><span>💗</span></div>
-  <p class="small" id="score">0 / 5</p>
-</div>
-
-<div id="page3" class="page">
-  <div class="gift">🎁</div>
-  <h2>เย้! คุณเก็บหัวใจครบแย้ววววววว 🎉</h2>
-  <p>ผมมีของขวัญจะให้คุณด้วยนะคะ ๆ <br><br>จริง ๆ มันเป็นแค่ข้อความเล็ก ๆ จากผมที่อยากเห็นคุณยิ้มได้ในวันนี้ 🤍</p>
-  <button class="btn" onclick="show(4)">เปิดดูข้างในสิคะ ๆ 🌷</button>
-</div>
-
-<div id="page4" class="page">
-  <h2>ถึงคุณคนเก่ง 🤍</h2>
-  <div class="letter">
-    <p>ช่วงนี้เหนื่อยมากไหม</p>
-    <p>ผมรู้นะ ว่าช่วงนี้คุณมีหลายอย่างให้ต้องจัดการ ทั้งงาน ทั้งเรื่องต่าง ๆ ที่เข้ามาในชีวิต</p>
-    <p>ผมเห็นคุณพยายามมาตลอดเลยนะ ᓚᘏᗢ ผมอยากบอกคุณว่า...</p>
-    <p><b style="color:var(--pink-d)">คุณทำได้ดีมากแล้วนะ</b></p>
-    <p>ถ้าวันไหนคุณเหนื่อย ถ้าวันไหนคุณไม่ไหว อย่าลังเลเลยนะที่จะพักผ่อน</p>
-    <p>อย่าลังเลเลยนะที่จะออกมาหาของอร่อย ๆ กิน และที่สำคัญอย่าลังเลเลยที่จะออกมาหาเหมียว ๆ ตัวอ้วน ๆ ที่ไหนสักที่ที่รอให้คุณจกพุงอยู่</p>
-    <p>&nbsp;</p>
+    <footer>
+      <span>© <span id="year"></span> CHINNAPAT — Personal Website</span>
+      <span class="coordinates">UPDATING THE FUTURE / 001</span>
+    </footer>
   </div>
-  <button class="btn blue" onclick="show(5)">ยังมีของเล็ก ๆ อีกนะคะ ๆ 💙</button>
-</div>
 
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-<div id="page5" class="page">
-  <h2>ของเล็ก ๆ เพิ่มเติม 🎀</h2>
-  <p>เลือกเล่นได้ตามใจเลยนะคะ ๆ ไม่มีแพ้ ไม่มีชนะ มีแต่ให้ใจได้พัก</p>
-  <div class="menu">
-    <button class="btn" onclick="show(8);drawCard()">🎴 สุ่มการ์ดกำลังใจ</button>
-    <button class="btn blue" onclick="show(9)">🐱 จกพุงเหมียว</button>
-    <button class="btn ghost" onclick="show(10)">🫧 หายใจไปกับผม</button>
-    <button class="btn" onclick="show(6)">🎶 ไปฟังเพลงต่อ</button>
-  </div>
-</div>
+    const messages = [
+      "Something new is loading.",
+      "Rebuilding. Refining. Reimagining.",
+      "A little patience. A better experience.",
+      "The next version is on its way."
+    ];
+    const target = document.getElementById("typed");
+    let messageIndex = 0, charIndex = messages[0].length, deleting = true;
 
-<div id="page8" class="page">
-  <h2>การ์ดกำลังใจประจำวัน 🎴</h2>
-  <div class="tcard" id="tcard">กดปุ่มด้านล่างเพื่อสุ่มการ์ดนะ</div>
-  <button class="btn" onclick="drawCard()">สุ่มใบใหม่ ✨</button><br>
-  <button class="btn ghost back" onclick="show(5)">← กลับ</button>
-</div>
-
-<div id="page9" class="page" style="position:relative">
-  <h2>จกพุงเหมียว 🐾</h2>
-  <p class="small">แตะที่เหมียวได้เลยนะ</p>
-  <button class="bigcat" id="bigcat" aria-label="จกพุงเหมียว"><svg viewBox="0 0 100 86"><use href="#cat"/></svg></button>
-  <div class="say" id="say">เหมียวรออยู่นะ...</div>
-  <p class="small" id="pcount">จกไป 0 ครั้ง</p>
-  <button class="btn ghost back" onclick="show(5)">← กลับ</button>
-</div>
-
-<div id="page10" class="page">
-  <h2>หายใจไปกับผม 🫧</h2>
-  <p class="small">หายใจเข้า 4 วิ ออก 4 วิ ทำสัก 5 รอบก็พอนะ</p>
-  <div class="breath" id="breath">พร้อมนะ</div>
-  <p class="small" id="bcount"></p>
-  <button class="btn blue" id="bbtn" onclick="toggleBreath()">เริ่มเลย</button><br>
-  <button class="btn ghost back" onclick="stopBreath();show(5)">← กลับ</button>
-</div>
-
-<div id="page6" class="page">
-  <h2>เพลงสำหรับวันที่เหนื่อย</h2>
-  <div class="disc"></div>
-  <div class="eq"><b></b><b></b><b></b><b></b><b></b></div>
-  <p>วันนี้ผมเอาเพลงนี้มาฝากคุณนะคะ<br><br>บางครั้งเราอาจไม่ต้องการคำพูดอะไรเยอะมากมาย<br><br>แค่มีเพลงดี ๆ สักเพลง<br>ก็อาจช่วยให้วันนั้นดีขึ้นนิดหนึ่ง<br><br>ผมเลยเลือกเพลงเล็ก ๆ ไว้ให้<br>ลองฟังดูนะ 🌷</p>
-  <div class="row">
-    <a class="btn" href="https://youtu.be/e0aDc5gy2xo" target="_blank" rel="noopener">เปิดเพลงใน YouTube 🎶</a>
-    <button class="btn ghost" onclick="show(7)">ข้อความสุดท้าย 🤍</button>
-  </div>
-</div>
-
-<div id="page7" class="page">
-  <h2>สุดท้ายแล้ว...</h2>
-  <p>ขอบคุณคุณนะ<br>ที่ครั้งหนึ่งเคยเข้ามาเป็นส่วนหนึ่งในชีวิตผม<br><br>ไม่ว่าต่อจากนี้จะเป็นยังไง<br>ผมก็ยังอยากเห็นคุณมีความสุข<br><br>อย่าลืมดูแลตัวเองนะ<br>คุณก็พักบ้าง กินของอร่อย ๆ และก็ยิ้มเยอะ ๆ ตอนคุณยิ้มมันทำโลกทั้งใบของใครบางคนมีความหมายมากเลยนะ ๆ <br><br>ไม่ว่ายังไงก็ตามที ผมก็ยังหวังดีกับคุณเสมอนะคะ 🌷</p>
-  <div style="font-size:34px">🐱💙</div>
-</div>
-
-</div>
-</div>
-
-<script>
-let score=0;
-function show(n){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
-  const el=document.getElementById('page'+n);
-  el.classList.add('on');
-  el.parentElement.scrollTop=0;
-}
-function startGame(){
-  document.getElementById('env').classList.add('go');
-  setTimeout(()=>{
-    show(2);
-    const field=document.getElementById('field');
-    const slots=[[6,10],[68,8],[38,42],[10,66],[70,62]];
-    slots.forEach(([x,y],i)=>{
-      const h=document.createElement('button');
-      h.className='heart';h.textContent='💗';h.setAttribute('aria-label','เก็บหัวใจ');
-      h.style.left=(x+Math.random()*6)+'%';h.style.top=(y+Math.random()*8)+'%';
-      h.style.animationDelay=(i*0.3)+'s';
-      h.onclick=()=>{
-        h.classList.add('pop');setTimeout(()=>h.remove(),350);
-        score++;
-        document.querySelectorAll('#meter span')[score-1].classList.add('on');
-        document.getElementById('score').textContent=score+' / 5';
-        if(score===5)setTimeout(()=>{show(3);confetti();},450);
-      };
-      field.appendChild(h);
-    });
-  },450);
-}
-function confetti(){
-  const set=['💗','🌷','✨','💙','🤍'];
-  for(let i=0;i<26;i++){
-    const c=document.createElement('span');c.className='conf';c.textContent=set[i%set.length];
-    c.style.left=Math.random()*100+'vw';c.style.animationDuration=(2.5+Math.random()*2.5)+'s';
-    c.style.animationDelay=(Math.random()*0.8)+'s';
-    document.body.appendChild(c);setTimeout(()=>c.remove(),6500);
-  }
-}
-
-const cheers=["วันนี้ไม่ต้องเก่งที่สุดก็ได้ แค่ผ่านวันนี้ไปได้ก็เก่งมากแล้ว 🌷","เหนื่อยได้ พักได้ แต่ห้ามลืมว่าคุณมีค่านะ 🤍","ทุกก้าวเล็ก ๆ ที่คุณเดินมา มันนับหมดเลยนะ ✨","ถ้าวันนี้ยังไม่ดี พรุ่งนี้ค่อยลองใหม่ได้เสมอ 🐱","ดื่มน้ำสักแก้วก่อนนะ แล้วค่อยสู้ต่อ 💧","คุณไม่ต้องแบกทุกอย่างไว้คนเดียวนะ 💙","ขอให้วันนี้มีของอร่อย ๆ รอคุณอยู่ 🍰","ใจดีกับตัวเองให้เหมือนที่คุณใจดีกับคนอื่นนะ 🌷","คุณเติบโตขึ้นเยอะกว่าที่คุณคิดเลยนะ 🌱","พักสายตา ยืดตัว แล้วยิ้มให้ตัวเองสักทีนะ 😊","ไม่เป็นไรเลยถ้าวันนี้ทำได้แค่นี้ มันพอแล้ว 🤍","เหมียวบอกว่า... คุณเก่งมาก (เหมียว~) 🐾"];
-let last=-1;
-function drawCard(){
-  let i;do{i=Math.floor(Math.random()*cheers.length)}while(i===last);last=i;
-  const t=document.getElementById('tcard');t.textContent=cheers[i];
-  t.classList.remove('flip');void t.offsetWidth;t.classList.add('flip');
-}
-let pats=0;
-const purrs=["ครืด ๆ ๆ 😽","เมี้ยว~ 🐱","แกร่ก ๆ ชอบจัง 💗","ขอจกอีกนะ 🐾","ง่วงละ... 😴","หงายพุงให้เลย! 🐈"];
-document.addEventListener('DOMContentLoaded',()=>{
-  const c=document.getElementById('bigcat');
-  c.addEventListener('click',e=>{
-    pats++;
-    document.getElementById('pcount').textContent='จกไป '+pats+' ครั้ง';
-    let m=purrs[pats%purrs.length];
-    if(pats===10)m='10 ครั้งแล้ว! เหมียวรักคุณเลย 💕';
-    if(pats===30){m='30 ครั้ง! คุณคือเพื่อนแท้ของเหมียว 🏆';confetti();}
-    document.getElementById('say').textContent=m;
-    const f=document.createElement('span');f.className='fl';f.textContent=['💗','🐾','✨'][pats%3];
-    f.style.left=(30+Math.random()*40)+'%';f.style.top='120px';
-    document.getElementById('page9').appendChild(f);setTimeout(()=>f.remove(),1000);
-  });
-});
-let bt=null,bn=0;
-function stopBreath(){clearInterval(bt);bt=null;const b=document.getElementById('breath');b.classList.remove('in');b.textContent='พร้อมนะ';document.getElementById('bbtn').textContent='เริ่มเลย';}
-function toggleBreath(){
-  if(bt){stopBreath();return}
-  const b=document.getElementById('breath'),n=document.getElementById('bcount');
-  document.getElementById('bbtn').textContent='หยุด';bn=0;let inh=true;
-  const step=()=>{
-    if(inh){b.classList.add('in');b.textContent='หายใจเข้า';}
-    else{b.classList.remove('in');b.textContent='หายใจออก';bn++;n.textContent='ครบ '+bn+' รอบแล้ว';
-      if(bn>=5){stopBreath();b.textContent='เก่งมาก 💙';n.textContent='ครบ 5 รอบแล้วนะ ใจเบาลงไหมคะ';return}}
-    inh=!inh;
-  };
-  step();bt=setInterval(step,4000);
-}
-</script>
+    function typeLoop() {
+      const current = messages[messageIndex];
+      if (deleting) {
+        charIndex--;
+        target.textContent = current.slice(0, Math.max(0, charIndex));
+        if (charIndex <= 0) {
+          deleting = false;
+          messageIndex = (messageIndex + 1) % messages.length;
+          setTimeout(typeLoop, 350);
+          return;
+        }
+        setTimeout(typeLoop, 28);
+      } else {
+        const next = messages[messageIndex];
+        charIndex++;
+        target.textContent = next.slice(0, charIndex);
+        if (charIndex >= next.length) {
+          deleting = true;
+          setTimeout(typeLoop, 2100);
+          return;
+        }
+        setTimeout(typeLoop, 45);
+      }
+    }
+    setTimeout(typeLoop, 2100);
+  </script>
 </body>
 </html>
