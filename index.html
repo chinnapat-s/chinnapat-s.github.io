@@ -226,7 +226,6 @@ li{padding:16px 0;border-color:var(--hair)}li small{line-height:1.6}
 /* contact — glowing card */
 #contact{display:block;overflow:hidden;margin:clamp(40px,6vw,80px) 0 56px;padding:clamp(34px,5.5vw,64px);border:1px solid var(--edge);border-radius:28px;text-align:left;background:radial-gradient(520px circle at 10% 0%,color-mix(in srgb,var(--ac) 18%,transparent),transparent 62%),linear-gradient(135deg,color-mix(in srgb,var(--ac) 8%,var(--card)),color-mix(in srgb,var(--card) 86%,transparent));box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 45%,transparent),0 40px 90px -46px var(--ac),0 10px 30px -18px color-mix(in srgb,var(--fg) 30%,transparent)}
 #contact::before{content:"";position:absolute;top:auto;left:auto;right:-90px;bottom:-190px;width:310px;height:310px;border:1px solid var(--edge);border-radius:50%;background:none;transform:none;transition:none;box-shadow:0 0 0 22px color-mix(in srgb,var(--ac) 5%,transparent),0 0 0 48px color-mix(in srgb,var(--ac) 3.5%,transparent);pointer-events:none}
-#contact::after{content:"↗";position:absolute;right:34px;top:26px;font:32px var(--serif);color:var(--ac);opacity:.85}
 #contact h2{margin:0 0 24px}
 .cbig{font-size:clamp(32px,5.4vw,66px);line-height:1.04;letter-spacing:-.045em;margin:0 0 36px}
 #contact .btns{margin-top:0;gap:12px;position:relative}
@@ -352,13 +351,76 @@ section{padding:38px 0}
 .cert em{white-space:nowrap}
 .cert code{white-space:nowrap;word-break:normal;font-size:11px;letter-spacing:.03em;margin-left:auto}
 .cert:hover code{letter-spacing:.03em;text-decoration:underline;text-underline-offset:3px}
+footer a{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px;transition:color .3s,text-decoration-color .3s}footer a.bcl{display:inline-flex;text-decoration:none}footer a:hover,footer a:focus-visible{color:var(--ac);text-decoration-color:var(--ac)}
+/* section dots */
+#dots{display:flex;align-items:center;gap:4px}
+#dots a{position:relative;display:grid;place-items:center;width:18px;height:22px;border-radius:50%;text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+#dots a::before{content:"";width:7px;height:7px;border-radius:50%;background:transparent;border:1px solid color-mix(in srgb,var(--fg) 45%,transparent);transition:transform .25s,background .25s,border-color .25s,box-shadow .25s}
+#dots a:hover::before,#dots a:focus-visible::before{transform:scale(1.35);border-color:var(--ac)}
+#dots a.on::before{background:var(--ac);border-color:var(--ac);transform:scale(1.25);box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 22%,transparent)}
+#dots a:focus-visible{outline:1px solid var(--ac);outline-offset:1px}
+#dtip{position:fixed;z-index:60;top:0;left:0;padding:5px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--fg);font-size:11px;letter-spacing:.06em;white-space:nowrap;pointer-events:none;opacity:0;transform:translateY(-4px);transition:opacity .18s,transform .18s}
+#dtip.show{opacity:1;transform:none}
+@media(max-width:700px){#dots{gap:0}#dots a{width:16px}nav>div{gap:10px}}
+#cardpage{position:fixed;inset:0;z-index:85;display:none;overflow:auto;overscroll-behavior:contain;padding:calc(28px + env(safe-area-inset-top,0px)) 24px calc(28px + env(safe-area-inset-bottom,0px));background:radial-gradient(900px circle at 50% -10%,color-mix(in srgb,var(--ac) 14%,transparent),transparent 60%),var(--bg);color:var(--fg)}
+#cardpage.on{display:flex}
+html.cp{overflow:hidden}
+/* business card */
+.bwrap{position:relative;width:min(520px,100%);margin:auto;animation:rise .7s cubic-bezier(.2,.8,.2,1) both}@keyframes rise{from{opacity:0;transform:translateY(18px)}}
+.bhead{display:flex;justify-content:flex-end;align-items:center;margin-bottom:18px;color:var(--ac)}.bhead a{color:var(--mute);text-decoration:none;transition:color .3s}.bhead a:hover{color:var(--ac)}
+.bcard{container-type:inline-size;position:relative;width:100%;aspect-ratio:7/4;perspective:1400px;cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent}
+.bcard:focus-visible{outline:2px solid var(--ac);outline-offset:6px;border-radius:5cqw}
+.bin{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.bcard.flip .bin{transform:rotateY(180deg)}
+.bf,.bb{position:absolute;inset:0;overflow:hidden;border-radius:4.5cqw;border:1px solid var(--edge);-webkit-backface-visibility:hidden;backface-visibility:hidden;padding:6cqw;display:flex;background:radial-gradient(70cqw circle at 8% 0%,color-mix(in srgb,var(--ac) 20%,transparent),transparent 65%),linear-gradient(135deg,color-mix(in srgb,var(--ac) 7%,var(--card)),var(--card));box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 35%,transparent),0 40px 80px -44px var(--ac),0 10px 30px -18px color-mix(in srgb,var(--fg) 35%,transparent)}
+.bf{flex-direction:column}
+.bb{transform:rotateY(180deg);gap:5cqw;align-items:center}
+.b-top{display:flex;align-items:center;gap:2.4cqw;font-size:max(9px,2.5cqw);letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.b-dot{width:1.6cqw;height:1.6cqw;min-width:6px;min-height:6px;border-radius:50%;background:var(--ac);box-shadow:0 0 0 .9cqw color-mix(in srgb,var(--ac) 18%,transparent),0 0 2.4cqw var(--ac)}
+.b-mol{position:absolute;right:6cqw;top:5cqw;width:15cqw;height:auto;stroke:var(--ac);fill:none;stroke-width:1.4;opacity:.85}
+.b-name{margin:auto 0 4cqw;font:400 12.5cqw/.98 var(--serif);letter-spacing:-.045em}
+.b-name span,.b-name i{display:block}.b-name i{color:var(--ac)}
+.b-role{display:flex;flex-direction:column;gap:1.2cqw;font-size:max(9px,2.7cqw);letter-spacing:.08em;text-transform:uppercase;border-top:1px solid var(--hair);padding-top:3.2cqw}
+.b-role b{font-weight:500;color:var(--fg)}.b-role span{color:var(--mute)}
+.b-list{flex:1;min-width:0;margin:0;display:flex;flex-direction:column;gap:2.2cqw;font-size:max(9px,2.7cqw);line-height:1.35}
+.b-list div{min-width:0}.b-list dt{font-size:.82em;letter-spacing:.2em;text-transform:uppercase;color:var(--ac)}
+.b-list dd{margin:0;color:var(--fg);overflow-wrap:anywhere}.b-list a{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}.b-list a:hover{text-decoration-color:var(--ac)}
+.bact{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:26px}
+#cardpage .btn{padding:10px 18px;font-size:12px}
+.bhint{margin:16px 0 0;text-align:center;font-size:11px;letter-spacing:.08em;color:var(--mute)}
+@media(max-width:520px){.bcard{aspect-ratio:1.3}.b-name{font-size:14cqw}.b-mol{width:17cqw}}
+@media(prefers-reduced-motion:reduce){.bin{transition:none}.bwrap{animation:none}#cardpage .btn::after{display:none}}
+/* card effects */
+.bcard{transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out}
+.bf::before{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(115deg,transparent 18%,rgba(94,234,212,.24) 34%,rgba(129,140,248,.22) 50%,rgba(244,114,182,.22) 66%,transparent 82%);background-size:260% 260%;background-position:var(--fx,0%) var(--fy,50%);opacity:calc(var(--go,0)*.9);transition:opacity .4s}
+.bf::after,.bb::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(42cqw circle at var(--gx,50%) var(--gy,-30%),color-mix(in srgb,#fff 26%,transparent),transparent 62%);opacity:var(--go,0);transition:opacity .4s}
+.bb::after{background:radial-gradient(42cqw circle at calc(100% - var(--gx,50%)) var(--gy,-30%),color-mix(in srgb,#fff 26%,transparent),transparent 62%)}
+.b-sweep{position:absolute;inset:0;overflow:hidden;pointer-events:none;border-radius:inherit}
+.b-sweep::before{content:"";position:absolute;top:-20%;bottom:-20%;left:-40%;width:28%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,color-mix(in srgb,#fff 30%,transparent),transparent);animation:bsweep 6s 1.2s ease-in-out infinite}
+@keyframes bsweep{0%{left:-40%}22%,100%{left:140%}}
+.b-seq{position:absolute;left:0;right:0;bottom:1.8cqw;overflow:hidden;white-space:nowrap;pointer-events:none;font:500 max(7px,1.7cqw)/1 var(--mono);letter-spacing:.35em;color:var(--ac);opacity:.4;-webkit-mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent);mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent)}
+.b-seq span{display:inline-block;animation:bseq 40s linear infinite}
+@keyframes bseq{to{transform:translateX(-50%)}}
+.b-mol{animation:bspin 30s linear infinite}
+@keyframes bspin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.bcard{transform:none;transition:none}.b-sweep,.b-seq span,.b-mol{animation:none}}
 </style>
 </head>
 <body>
-<div id="load"><span class="mono" id="lt"></span></div><canvas id="bg"></canvas><div id="bar"></div><div id="ring"></div><div id="toast" class="mono"></div><div id="glow"></div><div id="mol" aria-hidden="true"><div class="mp" data-s=".10" style="left:6%;top:20%"><div class="mo" style="animation-delay:-0s"><svg viewBox="0 0 60 60" width="74"><polygon points="30,4 52,17 52,43 30,56 8,43 8,17"/><circle cx="30" cy="30" r="9"/></svg></div></div><div class="mp" data-s=".18" style="left:88%;top:58%"><div class="mo" style="animation-delay:-2s"><svg viewBox="0 0 60 60" width="64"><circle cx="30" cy="22" r="8"/><line x1="25" y1="29" x2="14" y2="44"/><line x1="35" y1="29" x2="46" y2="44"/><circle cx="12" cy="47" r="5"/><circle cx="48" cy="47" r="5"/></svg></div></div><div class="mp" data-s=".26" style="left:10%;top:72%"><div class="mo" style="animation-delay:-4s"><svg viewBox="0 0 80 40" width="96"><polyline points="4,30 20,10 36,30 52,10 68,30 76,18"/><circle cx="4" cy="30" r="3"/><circle cx="36" cy="30" r="3"/><circle cx="68" cy="30" r="3"/></svg></div></div><div class="mp" data-s=".08" style="left:90%;top:14%"><div class="mo" style="animation-delay:-6s"><svg viewBox="0 0 60 60" width="62"><polygon points="30,5 55,23 46,53 14,53 5,23"/></svg></div></div><div class="mp" data-s=".14" style="left:46%;top:88%"><div class="mo" style="animation-delay:-8s"><svg viewBox="0 0 70 60" width="80"><circle cx="22" cy="30" r="12"/><circle cx="48" cy="30" r="12"/><line x1="30" y1="26" x2="40" y2="26"/><line x1="30" y1="34" x2="40" y2="34"/></svg></div></div></div><div id="rl" class="mono"></div><button id="top" aria-label="Back to top">↑</button>
+<div id="load"><span class="mono" id="lt"></span></div><canvas id="bg"></canvas><div id="bar"></div><div id="ring"></div><div id="dtip" class="mono"></div><div id="toast" class="mono"></div><div id="glow"></div><div id="mol" aria-hidden="true"><div class="mp" data-s=".10" style="left:6%;top:20%"><div class="mo" style="animation-delay:-0s"><svg viewBox="0 0 60 60" width="74"><polygon points="30,4 52,17 52,43 30,56 8,43 8,17"/><circle cx="30" cy="30" r="9"/></svg></div></div><div class="mp" data-s=".18" style="left:88%;top:58%"><div class="mo" style="animation-delay:-2s"><svg viewBox="0 0 60 60" width="64"><circle cx="30" cy="22" r="8"/><line x1="25" y1="29" x2="14" y2="44"/><line x1="35" y1="29" x2="46" y2="44"/><circle cx="12" cy="47" r="5"/><circle cx="48" cy="47" r="5"/></svg></div></div><div class="mp" data-s=".26" style="left:10%;top:72%"><div class="mo" style="animation-delay:-4s"><svg viewBox="0 0 80 40" width="96"><polyline points="4,30 20,10 36,30 52,10 68,30 76,18"/><circle cx="4" cy="30" r="3"/><circle cx="36" cy="30" r="3"/><circle cx="68" cy="30" r="3"/></svg></div></div><div class="mp" data-s=".08" style="left:90%;top:14%"><div class="mo" style="animation-delay:-6s"><svg viewBox="0 0 60 60" width="62"><polygon points="30,5 55,23 46,53 14,53 5,23"/></svg></div></div><div class="mp" data-s=".14" style="left:46%;top:88%"><div class="mo" style="animation-delay:-8s"><svg viewBox="0 0 70 60" width="80"><circle cx="22" cy="30" r="12"/><circle cx="48" cy="30" r="12"/><line x1="30" y1="26" x2="40" y2="26"/><line x1="30" y1="34" x2="40" y2="34"/></svg></div></div></div><div id="rl" class="mono"></div><button id="top" aria-label="Back to top">↑</button>
 <div id="sig" role="dialog" aria-modal="true" aria-label="Request a Signal chat"><div class="sbox"><button id="sx" aria-label="Close">×</button><p class="mono">Contact</p><p class="sbig">Let’s talk research.</p><p>Tell me who you are and what you’d like to discuss. I’ll reply by email.</p><input id="sn" placeholder="Your name"><input id="se" placeholder="Your email (so I can reply)"><textarea id="sm" rows="3" placeholder="What would you like to discuss?"></textarea><label class="sw"><input type="checkbox" id="sgc"><span></span>Also request a Signal chat</label><p id="sgn">Signal requests are reviewed first. If it’s a good fit, I’ll reply with my Signal contact.</p><button class="btn pri" id="ss">Send message ↗</button></div></div>
 <div class="wrap">
-<nav class="mono"><span>C. Singvan</span><div>
+<div id="cardpage" role="region" aria-label="Business card"><div class="bwrap">
+<div class="bcard" id="bcard" tabindex="0" role="button" aria-label="Business card. Press Enter to flip it."><div class="bin">
+<div class="bf"><span class="b-sweep" aria-hidden="true"></span><div class="b-seq" aria-hidden="true"><span id="b-seq"></span></div><div class="b-top mono"><span class="b-dot"></span><span>Chemistry · Research</span></div>
+<svg class="b-mol" viewBox="0 0 48 48" aria-hidden="true"><polygon points="24,5 40,14.500 40,33.500 24,43 8,33.500 8,14.500"/><polygon points="24,13 33,18.500 33,29.500 24,35 15,29.500 15,18.500" opacity=".5"/></svg>
+<div class="b-name"><span id="b-first"></span><i id="b-last"></i></div>
+<div class="b-role mono"><b id="b-title"></b><span id="b-sub"></span></div></div>
+<div class="bb"><dl class="b-list mono" id="b-list"></dl></div>
+</div></div>
+<div class="bact"><a class="btn pri" id="visit" href="#">Visit website</a><button class="btn" id="bflip" type="button">Flip card</button></div>
+</div></div>
+<nav class="mono"><span>C. Singvan</span><div><div id="dots" role="navigation" aria-label="Sections"><a href="#about" data-t="01 / About" aria-label="About"></a><a href="#research" data-t="02 / Research" aria-label="Research"></a><a href="#publications" data-t="03 / Publications" aria-label="Publications"></a><a href="#experience" data-t="04 / Experience" aria-label="Experience"></a><a href="#education" data-t="05 / Education" aria-label="Education"></a><a href="#credentials" data-t="06 / Credentials" aria-label="Credentials"></a><a href="#contact" data-t="07 / Contact" aria-label="Contact"></a></div>
 <button id="th" aria-label="Toggle theme">◐</button></div></nav>
 <header>
 <div id="clock" role="img" aria-label="Atomic clock, Bangkok time"><svg viewBox="0 0 200 200"><defs><path id="cp" d="M100,8a92,92 0 1,1 -0.1,0"/></defs><g id="cring"><text class="rt"><textPath href="#cp" textLength="566">ATGCCGTAAGCTTAGCATGGCTAACGTTAGCCATGACTGGATCCGATTAGCATGCA</textPath></text></g><g id="ticks"></g><g id="els"></g><circle class="orb" cx="100" cy="100" r="24"/><circle class="orb" cx="100" cy="100" r="38"/><circle class="orb" cx="100" cy="100" r="52"/><circle class="arc" id="ah" cx="100" cy="100" r="24"/><circle class="arc" id="am" cx="100" cy="100" r="38"/><circle class="arc" id="as" cx="100" cy="100" r="52"/><text x="100" y="42" class="cl">BKK</text><circle class="in-r" cx="100" cy="100" r="14"/><circle id="pulse" cx="100" cy="100" r="7"/><g id="nuc"><circle class="n1" cx="100" cy="100" r="4.6"/><circle class="n2" cx="96.4" cy="97.6" r="3.2"/><circle class="n2" cx="103.6" cy="98" r="3.2"/><circle class="n1" cx="98" cy="103.8" r="3.2"/><circle class="n2" cx="103.2" cy="103.4" r="3.2"/></g><circle id="tr" cx="100" cy="100" r="52"/><circle id="eh" r="4"/><circle id="em" r="4"/><circle id="es" r="4.6"/></svg></div><span class="mono">Chemistry · Thailand</span>
@@ -415,10 +477,10 @@ section{padding:38px 0}
 
 <section id="contact" class="r"><h2 class="mono">07 / Contact</h2>
 <p class="cbig">Interested in collaborating?<br><i style="color:var(--ac)">Let’s talk research.</i></p>
-<div class="btns"><button class="btn pri" id="cbtn">✉ Contact me</button><span class="mono" style="align-self:center">Email — or request a Signal chat</span></div></section>
+<div class="btns"><button class="btn pri" id="cbtn">✉ Contact me</button></div></section>
 
-<footer class="mono"><span>© 2026 Chinnapat Singvan · ORCiD : 0009-0001-2636-3593 </span>
-<svg viewBox="0 0 24 24" aria-label="Square and compasses"><path d="M12 3 5 20M12 3l7 17M8 14l8 0M3 21l9-9 9 9"/></svg></footer>
+<footer class="mono"><span>© 2026 Chinnapat Singvan · ORCiD : <a href="https://orcid.org/0009-0001-2636-3593" target="_blank" rel="noopener noreferrer">0009-0001-2636-3593</a></span>
+<a class="bcl" href="#card" title="Business card" aria-label="Business card"><svg viewBox="0 0 24 24" aria-label="Square and compasses"><path d="M12 3 5 20M12 3l7 17M8 14l8 0M3 21l9-9 9 9"/></svg></a></footer>
 </div>
 <script>
 const EMAIL='A'; // <- replace with your real email address (used for both messages and Signal requests)
@@ -494,6 +556,37 @@ const clockEl=document.getElementById('clock');
 function ct(){if(rm){clockEl.style.transform='';clockEl.style.opacity='';return}clockEl.style.transform=innerWidth>700?'translateY('+(scrollY*.22)+'px)':'';clockEl.style.opacity=Math.max(0,.4-scrollY/1400)}
 addEventListener('scroll',ct,{passive:true});addEventListener('resize',ct);ct();
 document.querySelectorAll('[data-n]').forEach(b=>{const n=+b.dataset.n;if(rm){b.textContent=n;return}let i=0;setTimeout(()=>{const t=setInterval(()=>{b.textContent=++i;if(i>=n)clearInterval(t)},260)},700)});
+// section dots: active state + tooltip
+(function(){const ds=[...document.querySelectorAll('#dots a')],tip=document.getElementById('dtip');
+const secs=ds.map(a=>document.querySelector(a.getAttribute('href')));
+function act(){let k=-1;const y=innerHeight*.4;secs.forEach((e,i)=>{if(e.getBoundingClientRect().top<=y)k=i});if(innerHeight+scrollY>=document.documentElement.scrollHeight-4)k=secs.length-1;ds.forEach((a,i)=>{a.classList.toggle('on',i===k);if(i===k)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')})}
+addEventListener('scroll',act,{passive:true});addEventListener('resize',act);act();
+function show(a){tip.textContent=a.dataset.t;const r=a.getBoundingClientRect(),w=tip.offsetWidth;let x=r.left+r.width/2-w/2;x=Math.max(8,Math.min(innerWidth-w-8,x));tip.style.left=x+'px';tip.style.top=(r.bottom+8)+'px';tip.classList.add('show')}
+function hide(){tip.classList.remove('show')}
+ds.forEach(a=>{a.addEventListener('mouseenter',()=>show(a));a.addEventListener('mouseleave',hide);a.addEventListener('focus',()=>show(a));a.addEventListener('blur',hide);a.addEventListener('click',()=>setTimeout(hide,900))});
+})();
+// business card page (#card) — built from the details below
+(function(){const cp=document.getElementById('cardpage'),card=document.getElementById('bcard'),ORCID='0009-0001-2636-3593';
+const d={first:'Chinnapat',last:'Singvan',title:'Research Assistant',dept:'Supramolecular Chemistry Research Unit',org:'King Mongkut\u2019s University of Technology Thonburi',orgA:"King Mongkut's University of Technology Thonburi",areas:'Bacteriophages \u00b7 Drug delivery systems \u00b7 Protein engineering',email:ok_(EMAIL)?EMAIL:''};
+document.getElementById('b-first').textContent=d.first;document.getElementById('b-last').textContent=d.last;
+document.getElementById('b-title').textContent=d.title;document.getElementById('b-sub').textContent=d.dept+' \u00b7 KMUTT';
+const esc=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const rows=[['Affiliation',esc(d.org)],['Focus',esc(d.areas)],['Location','Bangkok, Thailand'],['ORCID','<a href="https://orcid.org/'+ORCID+'" target="_blank" rel="noopener noreferrer">'+ORCID+'</a>']];
+if(d.email)rows.push(['Email','<a href="mailto:'+esc(d.email)+'">'+esc(d.email)+'</a>']);
+document.getElementById('b-list').innerHTML=rows.map(r=>'<div><dt>'+r[0]+'</dt><dd>'+r[1]+'</dd></div>').join('');
+document.querySelectorAll('#b-list a').forEach(a=>a.addEventListener('click',e=>e.stopPropagation()));
+const flip=()=>card.classList.toggle('flip');
+card.addEventListener('click',flip);
+card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flip()}});
+document.getElementById('bflip').onclick=flip;
+const sq=document.getElementById('b-seq');{let t='';for(let i=0;i<90;i++)t+='ATGC'[Math.random()*4|0];sq.textContent=t+t}
+const scr=(el,t)=>{clearInterval(el._t);if(rm){el.textContent=t;return}let f=0;el._t=setInterval(()=>{el.textContent=[...t].map((c,i)=>i<f?c:'ATGC'[Math.random()*4|0]).join('');if(++f>t.length){clearInterval(el._t);el.textContent=t}},55)};
+card.addEventListener('pointermove',e=>{if(rm||e.pointerType==='touch')return;const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height,S=(k,v)=>card.style.setProperty(k,v);S('--ry',((x-.5)*14).toFixed(2)+'deg');S('--rx',((.5-y)*10).toFixed(2)+'deg');S('--gx',(x*100).toFixed(1)+'%');S('--gy',(y*100).toFixed(1)+'%');S('--fx',(x*100).toFixed(1)+'%');S('--fy',(y*100).toFixed(1)+'%');S('--go',1)});
+card.addEventListener('pointerleave',()=>{card.style.setProperty('--rx','0deg');card.style.setProperty('--ry','0deg');card.style.setProperty('--go',0)});
+function route(){const on=location.hash==='#card';cp.classList.toggle('on',on);root.classList.toggle('cp',on);if(on){card.classList.remove('flip');scr(document.getElementById('b-first'),d.first);scr(document.getElementById('b-last'),d.last);cp.scrollTop=0;setTimeout(()=>card.focus({preventScroll:true}),60)}}
+addEventListener('hashchange',route);route();
+addEventListener('keydown',e=>{if(e.key==='Escape'&&cp.classList.contains('on'))location.hash=''});
+})();
 // theme + keys
 function toggleTheme(){const cur=root.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');root.dataset.theme=cur==='dark'?'light':'dark';ph()}
 document.getElementById('th').onclick=toggleTheme;
@@ -531,7 +624,7 @@ const dec=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){decod
 document.querySelectorAll('.card h3,.cbig').forEach(el=>dec.observe(el));
 // intro curtain
 const ld=document.getElementById('load');let seen=false;try{seen=sessionStorage.getItem('seen')}catch(e){}
-if(seen||rm)ld.remove();else{try{sessionStorage.setItem('seen','1')}catch(e){}
+if(seen||rm||location.hash==="#card")ld.remove();else{try{sessionStorage.setItem('seen','1')}catch(e){}
 const lt=document.getElementById('lt'),w='CHINNAPAT SINGVAN';let f=0;
 const t=setInterval(()=>{lt.textContent=[...w].map((c,i)=>c===' '||i<f?c:'ATGC'[Math.random()*4|0]).join('');if(++f>w.length+4){clearInterval(t);setTimeout(()=>{ld.classList.add('out');setTimeout(()=>ld.remove(),1000)},350)}},70)}
 // pH-indicator accent: hue drifts teal -> blue -> violet as you scroll
