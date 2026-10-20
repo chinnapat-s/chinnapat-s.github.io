@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Chinnapat Singvan — Chemistry · Research</title>
+<title>Chinnapat Singvan</title>
 <meta name="description" content="Chinnapat Singvan is a chemistry undergraduate at KMUTT working on bacteriophages, drug delivery and protein engineering.">
 <meta name="theme-color" content="#0e0e0c">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Chinnapat Singvan">
@@ -359,17 +359,7 @@ section{padding:38px 0}
 .cert em{white-space:nowrap}
 .cert code{white-space:nowrap;word-break:normal;font-size:11px;letter-spacing:.03em;margin-left:auto}
 .cert:hover code{letter-spacing:.03em;text-decoration:underline;text-underline-offset:3px}
-footer a{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px;transition:color .3s,text-decoration-color .3s}footer a.bcl{display:inline-flex;text-decoration:none}footer a:hover,footer a:focus-visible{color:var(--ac);text-decoration-color:var(--ac)}
-/* section dots */
-#dots{display:flex;align-items:center;gap:4px}
-#dots a{position:relative;display:grid;place-items:center;width:18px;height:22px;border-radius:50%;text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
-#dots a::before{content:"";width:7px;height:7px;border-radius:50%;background:transparent;border:1px solid color-mix(in srgb,var(--fg) 45%,transparent);transition:transform .25s,background .25s,border-color .25s,box-shadow .25s}
-#dots a:hover::before,#dots a:focus-visible::before{transform:scale(1.35);border-color:var(--ac)}
-#dots a.on::before{background:var(--ac);border-color:var(--ac);transform:scale(1.25);box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 22%,transparent)}
-#dots a:focus-visible{outline:1px solid var(--ac);outline-offset:1px}
-#dtip{position:fixed;z-index:60;top:0;left:0;padding:5px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--fg);font-size:11px;letter-spacing:.06em;white-space:nowrap;pointer-events:none;opacity:0;transform:translateY(-4px);transition:opacity .18s,transform .18s}
-#dtip.show{opacity:1;transform:none}
-@media(max-width:700px){#dots{gap:0}#dots a{width:16px}nav>div{gap:10px}}
+footer a{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px;transition:color .3s,text-decoration-color .3s}footer a:hover,footer a:focus-visible{color:var(--ac);text-decoration-color:var(--ac)}
 #cardpage{position:fixed;inset:0;z-index:85;display:none;overflow:auto;overscroll-behavior:contain;padding:calc(28px + env(safe-area-inset-top,0px)) 24px calc(28px + env(safe-area-inset-bottom,0px));background:radial-gradient(900px circle at 50% -10%,color-mix(in srgb,var(--gc) 14%,transparent),transparent 60%),var(--bg);color:var(--fg)}
 #cardpage.on{display:flex}
 @property --bh{syntax:'<number>';inherits:true;initial-value:0}
@@ -502,14 +492,21 @@ html.cp{overflow:hidden}
 .chip.chip2{margin-top:12px;border-left-color:var(--mute);color:var(--mute)}
 /* language + eggs */
 #lg{font:500 10px var(--mono);letter-spacing:.04em}
+#bcb{display:grid;place-items:center;padding:0}
 html[lang=th] :is(.mono,p,h2,h3,li,small,em,b,span,button,label,dt,dd,a):not(h1 *){letter-spacing:normal}
 html[lang=th] :is(h2,h3,.rsc h3,.gvi-t b){line-height:1.4}
 html[lang=th] :is(.big,.cbig,.sbig){line-height:1.45}
-@media(max-width:420px){nav>span{font-size:11px;letter-spacing:.04em}#dots a{width:14px}}
+/* citation buttons */
+.pub .cite{background:none;border:0;padding:0;margin-left:18px;color:var(--ac);font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:4px;transition:text-decoration-color .3s}
+.pub .cite:hover,.pub .cite:focus-visible{text-decoration-color:var(--ac);outline:none}
+.sq{position:relative;display:inline-flex;outline:none}
+.sq::before{content:attr(data-lodge);position:absolute;right:0;bottom:calc(100% + 10px);white-space:nowrap;font:500 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mute);opacity:0;transform:translateY(4px);transition:opacity .5s,transform .5s;pointer-events:none}
+.sq:hover::before,.sq:focus-visible::before,.sq:focus::before{opacity:1;transform:none}
+.sq:hover svg,.sq:focus svg{transform:rotate(12deg);stroke:var(--ac)}
 </style>
 </head>
 <body>
-<div id="load"><span class="mono" id="lt"></span></div><canvas id="bg"></canvas><div id="bar"></div><div id="ring"></div><div id="dtip" class="mono"></div><div id="toast" class="mono"></div><div id="glow"></div><div id="mol" aria-hidden="true"><div class="mp" data-s=".10" style="left:6%;top:20%"><div class="mo" style="animation-delay:-0s"><svg viewBox="0 0 60 60" width="74"><polygon points="30,4 52,17 52,43 30,56 8,43 8,17"/><circle cx="30" cy="30" r="9"/></svg></div></div><div class="mp" data-s=".18" style="left:88%;top:58%"><div class="mo" style="animation-delay:-2s"><svg viewBox="0 0 60 60" width="64"><circle cx="30" cy="22" r="8"/><line x1="25" y1="29" x2="14" y2="44"/><line x1="35" y1="29" x2="46" y2="44"/><circle cx="12" cy="47" r="5"/><circle cx="48" cy="47" r="5"/></svg></div></div><div class="mp" data-s=".26" style="left:10%;top:72%"><div class="mo" style="animation-delay:-4s"><svg viewBox="0 0 80 40" width="96"><polyline points="4,30 20,10 36,30 52,10 68,30 76,18"/><circle cx="4" cy="30" r="3"/><circle cx="36" cy="30" r="3"/><circle cx="68" cy="30" r="3"/></svg></div></div><div class="mp" data-s=".08" style="left:90%;top:14%"><div class="mo" style="animation-delay:-6s"><svg viewBox="0 0 60 60" width="62"><polygon points="30,5 55,23 46,53 14,53 5,23"/></svg></div></div><div class="mp" data-s=".14" style="left:46%;top:88%"><div class="mo" style="animation-delay:-8s"><svg viewBox="0 0 70 60" width="80"><circle cx="22" cy="30" r="12"/><circle cx="48" cy="30" r="12"/><line x1="30" y1="26" x2="40" y2="26"/><line x1="30" y1="34" x2="40" y2="34"/></svg></div></div></div><div id="rl" class="mono"></div><button id="top" aria-label="Back to top">↑</button>
+<div id="load"><span class="mono" id="lt"></span></div><canvas id="bg"></canvas><div id="bar"></div><div id="ring"></div><div id="toast" class="mono"></div><div id="glow"></div><div id="mol" aria-hidden="true"><div class="mp" data-s=".10" style="left:6%;top:20%"><div class="mo" style="animation-delay:-0s"><svg viewBox="0 0 60 60" width="74"><polygon points="30,4 52,17 52,43 30,56 8,43 8,17"/><circle cx="30" cy="30" r="9"/></svg></div></div><div class="mp" data-s=".18" style="left:88%;top:58%"><div class="mo" style="animation-delay:-2s"><svg viewBox="0 0 60 60" width="64"><circle cx="30" cy="22" r="8"/><line x1="25" y1="29" x2="14" y2="44"/><line x1="35" y1="29" x2="46" y2="44"/><circle cx="12" cy="47" r="5"/><circle cx="48" cy="47" r="5"/></svg></div></div><div class="mp" data-s=".26" style="left:10%;top:72%"><div class="mo" style="animation-delay:-4s"><svg viewBox="0 0 80 40" width="96"><polyline points="4,30 20,10 36,30 52,10 68,30 76,18"/><circle cx="4" cy="30" r="3"/><circle cx="36" cy="30" r="3"/><circle cx="68" cy="30" r="3"/></svg></div></div><div class="mp" data-s=".08" style="left:90%;top:14%"><div class="mo" style="animation-delay:-6s"><svg viewBox="0 0 60 60" width="62"><polygon points="30,5 55,23 46,53 14,53 5,23"/></svg></div></div><div class="mp" data-s=".14" style="left:46%;top:88%"><div class="mo" style="animation-delay:-8s"><svg viewBox="0 0 70 60" width="80"><circle cx="22" cy="30" r="12"/><circle cx="48" cy="30" r="12"/><line x1="30" y1="26" x2="40" y2="26"/><line x1="30" y1="34" x2="40" y2="34"/></svg></div></div></div><div id="rl" class="mono"></div><button id="top" aria-label="Back to top">↑</button>
 <div id="sig" role="dialog" aria-modal="true" aria-label="Request a Signal chat"><div class="sbox"><button id="sx" aria-label="Close">×</button><p class="mono">Contact</p><p class="sbig">Let’s talk research.</p><p>Tell me who you are and what you’d like to discuss. I’ll reply by email.</p><input id="sn" placeholder="Your name"><input id="se" placeholder="Your email (so I can reply)"><textarea id="sm" rows="3" placeholder="What would you like to discuss?"></textarea><label class="sw"><input type="checkbox" id="sgc"><span></span>Also request a Signal chat</label><p id="sgn">Signal requests are reviewed first. If it’s a good fit, I’ll reply with my Signal contact.</p><button class="btn pri" id="ss">Send message ↗</button></div></div>
 <div class="wrap">
 <div id="cardpage" role="region" aria-label="Business card"><div class="bwrap">
@@ -522,8 +519,8 @@ html[lang=th] :is(.big,.cbig,.sbig){line-height:1.45}
 </div></div>
 <div class="bact"><a class="btn pri" id="visit" href="#">Visit website</a></div>
 </div></div>
-<nav class="mono"><span>C. Singvan</span><div><div id="dots" role="navigation" aria-label="Sections"><a href="#about" data-t="01 / About" aria-label="About"></a><a href="#research" data-t="02 / Research" aria-label="Research"></a><a href="#publications" data-t="03 / Publications" aria-label="Publications"></a><a href="#experience" data-t="04 / Experience" aria-label="Experience"></a><a href="#education" data-t="05 / Education" aria-label="Education"></a><a href="#credentials" data-t="06 / Credentials" aria-label="Credentials"></a><a href="#contact" data-t="07 / Contact" aria-label="Contact"></a></div>
-<button id="lg" type="button" aria-label="Language" title="ไทย / English">TH</button><button id="th" aria-label="Toggle theme">◐</button></div></nav>
+<nav class="mono"><span>C. Singvan</span><div>
+<button id="bcb" type="button" aria-label="Business card" title="Business card"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M6 10h5M6 14h3"/><circle cx="16.5" cy="11" r="1.8"/><path d="M14 16c.5-1.3 1.4-1.8 2.5-1.8s2 .5 2.5 1.8"/></svg></button><button id="lg" type="button" aria-label="Language" title="ไทย / English">TH</button><button id="th" aria-label="Toggle theme">◐</button></div></nav>
 <header>
 <div id="clock" role="img" aria-label="Atomic clock, Bangkok time"><svg viewBox="0 0 200 200"><defs><path id="cp" d="M100,8a92,92 0 1,1 -0.1,0"/></defs><g id="cring"><text class="rt"><textPath href="#cp" textLength="566">ATGCCGTAAGCTTAGCATGGCTAACGTTAGCCATGACTGGATCCGATTAGCATGCA</textPath></text></g><g id="ticks"></g><g id="els"></g><circle class="orb" cx="100" cy="100" r="24"/><circle class="orb" cx="100" cy="100" r="38"/><circle class="orb" cx="100" cy="100" r="52"/><circle class="arc" id="ah" cx="100" cy="100" r="24"/><circle class="arc" id="am" cx="100" cy="100" r="38"/><circle class="arc" id="as" cx="100" cy="100" r="52"/><text x="100" y="42" class="cl">BKK</text><circle class="in-r" cx="100" cy="100" r="14"/><circle id="pulse" cx="100" cy="100" r="7"/><g id="nuc"><circle class="n1" cx="100" cy="100" r="4.6"/><circle class="n2" cx="96.4" cy="97.6" r="3.2"/><circle class="n2" cx="103.6" cy="98" r="3.2"/><circle class="n1" cx="98" cy="103.8" r="3.2"/><circle class="n2" cx="103.2" cy="103.4" r="3.2"/></g><circle id="tr" cx="100" cy="100" r="52"/><circle id="eh" r="4"/><circle id="em" r="4"/><circle id="es" r="4.6"/></svg></div><span class="mono">Chemistry · Thailand</span>
 <h1><span class="nm">Chinnapat</span><br><i>Singvan</i></h1>
@@ -560,7 +557,7 @@ html[lang=th] :is(.big,.cbig,.sbig){line-height:1.45}
 
 <section id="publications" class="r"><h2 class="mono">03 / Publications</h2>
 <div class="pub"><p>Decha, N., <b>Singvan, C.</b>, Champasri, K., Jantathai, S., Thongsrikaew, K., Netmanee, S., Hoihuan, P., Nakaramontri, Y., Phuthong, W., Thitiphuree, T., Rojviriya, C., Polyiam, K., Roshorm, Y. M., &amp; Pratumyot, K. (2026). <em>Characterization of Textured Soy Protein Scaffolds for Cell Growth and Differentiation in Cell-Based Meat Applications.</em></p>
-<span class="mono badge">● Manuscript submitted</span><a id="doi" href="#">DOI ↗</a></div></section>
+<span class="mono badge">● Manuscript submitted</span><a id="doi" href="#">DOI ↗</a><button type="button" class="cite mono" data-c="apa">Copy APA</button><button type="button" class="cite mono" data-c="bib">BibTeX</button></div></section>
 
 <section id="experience" class="r"><h2 class="mono">04 / Experience</h2><div class="experience-wrap">
 <div class="experience-intro mono"><span class="exp-mark">✳</span><span>Research journey</span><span class="exp-count">03 entries · 2023—now</span></div>
@@ -592,9 +589,14 @@ html[lang=th] :is(.big,.cbig,.sbig){line-height:1.45}
 <div class="btns"><button class="btn pri" id="cbtn">✉ Contact me</button></div></section>
 
 <footer class="mono"><span>© 2026 Chinnapat Singvan · ORCiD : <a href="https://orcid.org/0009-0001-2636-3593" target="_blank" rel="noopener noreferrer">0009-0001-2636-3593</a></span>
-<a class="bcl" href="#card" title="Business card" aria-label="Business card"><svg viewBox="0 0 24 24" aria-label="Square and compasses"><path d="M12 3 5 20M12 3l7 17M8 14l8 0M3 21l9-9 9 9"/></svg></a></footer>
+<span class="sq" tabindex="0" role="img" aria-label="Lodge Ratanakosin No. 1833 SC" data-lodge="Lodge Ratanakosin No. 1833 SC"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 20M12 3l7 17M8 14l8 0M3 21l9-9 9 9"/></svg></span></footer>
 </div>
 <script>
+// start-up gate: nothing animates until the intro curtain has really opened
+let __ready=false;const __q=[];
+function onGo(fn){__ready?fn():__q.push(fn)}
+function __go(){if(__ready)return;__ready=true;__q.splice(0).forEach(f=>{try{f()}catch(e){}})}
+(function(){const IO=window.IntersectionObserver;if(!IO)return;window.IntersectionObserver=class extends IO{constructor(cb,o){super((es,ob)=>onGo(()=>cb(es,ob)),o)}}})();
 const EMAIL='A'; // <- replace with your real email address (used for both messages and Signal requests)
 const rm=matchMedia('(prefers-reduced-motion:reduce)').matches,root=document.documentElement;
 const ok_=m=>/@/.test(m);
@@ -621,7 +623,7 @@ const TH={
 "Interested in collaborating?":"สนใจร่วมงานกันไหม?","✉ Contact me":"✉ ติดต่อผม",
 "Chemistry · Research":"เคมี · งานวิจัย","Supramolecular Chemistry Research Unit · KMUTT":"หน่วยวิจัยเคมีเหนือโมเลกุล · มจธ.","Affiliation":"สังกัด","Focus":"ความสนใจ","Bacteriophages · Drug delivery systems · Protein engineering":"แบคเทอริโอเฟจ · ระบบนำส่งยา · วิศวกรรมโปรตีน","Location":"ที่ตั้ง","Bangkok, Thailand":"กรุงเทพฯ ประเทศไทย","Visit website":"เข้าสู่เว็บไซต์",
 "Chinnapat Singvan — Chemistry · Research":"Chinnapat Singvan — เคมี · งานวิจัย",
-"DOI not assigned yet (manuscript under review)":"ยังไม่มี DOI (ต้นฉบับอยู่ระหว่างพิจารณา)","Email not set yet":"ยังไม่ได้ตั้งค่าอีเมล","Please add your name and a message":"กรุณากรอกชื่อและข้อความ","Certificate number copied":"คัดลอกเลขที่ใบรับรองแล้ว"};
+"DOI not assigned yet (manuscript under review)":"ยังไม่มี DOI (ต้นฉบับอยู่ระหว่างพิจารณา)","Email not set yet":"ยังไม่ได้ตั้งค่าอีเมล","Please add your name and a message":"กรุณากรอกชื่อและข้อความ","Certificate number copied":"คัดลอกเลขที่ใบรับรองแล้ว","Copy APA":"คัดลอก APA","BibTeX":"BibTeX","APA citation copied":"คัดลอกการอ้างอิง APA แล้ว","BibTeX copied":"คัดลอก BibTeX แล้ว"};
 const THT={"Bacteriophages":"แบคเทอริโอเฟจ","Encapsulation":"การห่อหุ้ม","Drug Delivery":"การนำส่งยา","Protein Engineering":"วิศวกรรมโปรตีน","Supramolecular Chemistry":"เคมีเหนือโมเลกุล","Synthesis":"การสังเคราะห์"},
 WTH=["แบคเทอริโอเฟจ","ระบบนำส่งยา","วิศวกรรมโปรตีน","การสังเคราะห์ทางเคมี"],REVK={};Object.keys(TH).forEach(k=>REVK[TH[k]]=k);
 let LANG='en',WEN=null;
@@ -634,7 +636,9 @@ while(n=w.nextNode()){if(l==='th'){if(n._en===undefined){const t=__tr(n.nodeValu
 if(!WEN)WEN=wd.slice();wd.splice(0,wd.length,...(l==='th'?WTH:WEN));
 document.title=__tr(l==='th'?'Chinnapat Singvan — Chemistry · Research':document.title);if(l==='en')document.title='Chinnapat Singvan — Chemistry · Research';
 const b=document.getElementById('lg');if(b)b.textContent=l==='th'?'EN':'TH';
-try{localStorage.setItem('lang',l)}catch(e){}}
+try{localStorage.setItem('lang',l)}catch(e){}
+setTimeout(()=>document.querySelectorAll(DEC+',section h2').forEach(el=>{const r=el.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight&&!el._d)decode(el)}),40)}
+document.getElementById('bcb').onclick=()=>{location.hash='#card'};
 document.getElementById('lg').onclick=()=>applyLang(LANG==='th'?'en':'th');
 Promise.resolve().then(()=>{let l='en';try{l=localStorage.getItem('lang')||'en'}catch(e){}const q=new URLSearchParams(location.search).get('lang');if(q==='th'||q==='en')l=q;if(l==='th')applyLang('th')});
 function say(t){toast.textContent=__tr(t);toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800)}
@@ -678,7 +682,7 @@ const ch='ATGCATGCACDEFGHIKLMNPQRSTVWY→⇌+=',tw=document.createTreeWalker(doc
 while(tw.nextNode())ns.push([tw.currentNode,tw.currentNode.nodeValue]);
 let busy=false;
 function scramble(){if(busy||rm)return;busy=true;let f=0;const t=setInterval(()=>{ns.forEach(([n,o])=>{n.nodeValue=[...o].map((c,i)=>c===' '||c==='\n'||i<f/2?c:ch[Math.random()*ch.length|0]).join('')});if(++f>22){ns.forEach(([n,o])=>n.nodeValue=o);clearInterval(t);busy=false}},65)}
-scramble();
+onGo(scramble);
 const h1=document.querySelector('h1'),hs=[...h1.querySelectorAll('.nm,i')];
 const hm=e=>{hs.forEach(s=>{const r=s.getBoundingClientRect();s.style.setProperty('--mx',(e.clientX-r.left)+'px');s.style.setProperty('--my',(e.clientY-r.top)+'px')});},hl=()=>{h1.style.transform='';hs.forEach(s=>{s.style.setProperty('--mx','-500px');s.style.setProperty('--my','-500px')})};
 h1.addEventListener('pointermove',hm);h1.addEventListener('pointerdown',hm);h1.addEventListener('pointerleave',hl);
@@ -705,16 +709,7 @@ ck();
 const clockEl=document.getElementById('clock');
 function ct(){if(rm){clockEl.style.transform='';clockEl.style.opacity='';return}clockEl.style.transform=innerWidth>700?'translateY('+(scrollY*.22)+'px)':'';clockEl.style.opacity=Math.max(0,.4-scrollY/1400)}
 addEventListener('scroll',ct,{passive:true});addEventListener('resize',ct);ct();
-document.querySelectorAll('[data-n]').forEach(b=>{const n=+b.dataset.n;if(rm){b.textContent=n;return}let i=0;setTimeout(()=>{const t=setInterval(()=>{b.textContent=++i;if(i>=n)clearInterval(t)},260)},700)});
-// section dots: active state + tooltip
-(function(){const ds=[...document.querySelectorAll('#dots a')],tip=document.getElementById('dtip');
-const secs=ds.map(a=>document.querySelector(a.getAttribute('href')));
-function act(){let k=-1;const y=innerHeight*.4;secs.forEach((e,i)=>{if(e.getBoundingClientRect().top<=y)k=i});if(innerHeight+scrollY>=document.documentElement.scrollHeight-4)k=secs.length-1;ds.forEach((a,i)=>{a.classList.toggle('on',i===k);if(i===k)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')})}
-addEventListener('scroll',act,{passive:true});addEventListener('resize',act);act();
-function show(a){tip.textContent=a.dataset.t;const r=a.getBoundingClientRect(),w=tip.offsetWidth;let x=r.left+r.width/2-w/2;x=Math.max(8,Math.min(innerWidth-w-8,x));tip.style.left=x+'px';tip.style.top=(r.bottom+8)+'px';tip.classList.add('show')}
-function hide(){tip.classList.remove('show')}
-ds.forEach(a=>{a.addEventListener('mouseenter',()=>show(a));a.addEventListener('mouseleave',hide);a.addEventListener('focus',()=>show(a));a.addEventListener('blur',hide);a.addEventListener('click',()=>setTimeout(hide,900))});
-})();
+onGo(()=>document.querySelectorAll('[data-n]').forEach(b=>{const n=+b.dataset.n;if(rm){b.textContent=n;return}let i=0;setTimeout(()=>{const t=setInterval(()=>{b.textContent=++i;if(i>=n)clearInterval(t)},260)},700)}));
 // business card page (#card) — built from the details below
 (function(){const cp=document.getElementById('cardpage'),card=document.getElementById('bcard'),ORCID='0009-0001-2636-3593';
 const d={first:'Chinnapat',last:'Singvan',title:'Research Assistant',dept:'Supramolecular Chemistry Research Unit',org:'King Mongkut\u2019s University of Technology Thonburi',orgA:"King Mongkut's University of Technology Thonburi",areas:'Bacteriophages \u00b7 Drug delivery systems \u00b7 Protein engineering',email:ok_(EMAIL)?EMAIL:''};
@@ -750,13 +745,19 @@ const ticks=r=>{let h='';for(let k=0;k<12;k++)h+='<i style="--k:'+k+(r==='w'?';-
 document.getElementById('gvs-l').innerHTML=GIVING.map(x=>'<div class="gvi"><div class="rg '+(['m','a','w'].includes(x.rhythm)?x.rhythm:'m')+'" aria-hidden="true"><svg viewBox="0 0 24 24">'+(I[x.icon]||I.leaf)+'</svg>'+ticks(x.rhythm)+'</div><div class="gvi-t"><b>'+esc(x.title)+'</b><span class="mono">'+esc(x.when)+'</span></div></div>').join('');
 })();
 document.querySelectorAll('.rsc').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px')}));
+// citation buttons (APA / BibTeX), built from the publication on the page
+(function(){const AU=["Decha, N.","Singvan, C.","Champasri, K.","Jantathai, S.","Thongsrikaew, K.","Netmanee, S.","Hoihuan, P.","Nakaramontri, Y.","Phuthong, W.","Thitiphuree, T.","Rojviriya, C.","Polyiam, K.","Roshorm, Y. M.","Pratumyot, K."],YR='2026';
+const title=()=>document.querySelector('.pub em').textContent.trim().replace(/\.$/,'');
+const apa=()=>AU.slice(0,-1).join(', ')+', & '+AU[AU.length-1]+' ('+YR+'). '+title()+'. '+(DOI?'https://doi.org/'+DOI:'Manuscript submitted for publication.');
+const bib=()=>'@unpublished{decha'+YR+'characterization,\n  author = {'+AU.join(' and ')+'},\n  title = {'+title()+'},\n  year = {'+YR+'},\n  note = {Manuscript submitted}'+(DOI?',\n  doi = {'+DOI+'}':'')+'\n}';
+document.querySelectorAll('.cite').forEach(b=>b.onclick=()=>b.dataset.c==='apa'?copy(apa(),'APA citation copied'):copy(bib(),'BibTeX copied'))})();
 // theme + keys
 function toggleTheme(){const cur=root.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');root.dataset.theme=cur==='dark'?'light':'dark';ph()}
 document.getElementById('th').onclick=toggleTheme;
 // typewriter
 const ty=document.getElementById('ty'),wd=['bacteriophages','drug delivery systems','protein engineering','chemical synthesis'];let wi=0,ci=0,del=false;
-(function type(){const w=wd[wi];ty.textContent=w.slice(0,ci);if(rm){ty.textContent=wd[0];return}
-if(!del&&ci<w.length){ci++;setTimeout(type,70)}else if(!del){del=true;setTimeout(type,1400)}else if(ci>0){ci--;setTimeout(type,35)}else{del=false;wi=(wi+1)%wd.length;setTimeout(type,300)}})();
+onGo(function type(){const w=wd[wi];ty.textContent=w.slice(0,ci);if(rm){ty.textContent=wd[0];return}
+if(!del&&ci<w.length){ci++;setTimeout(type,70)}else if(!del){del=true;setTimeout(type,1400)}else if(ci>0){ci--;setTimeout(type,35)}else{del=false;wi=(wi+1)%wd.length;setTimeout(type,300)}});
 // aurora glow
 const gl=document.getElementById('glow');let gx=innerWidth/2,gy=innerHeight/3;
 if(!rm)(function g(){gx+=(mx-gx)*.07;gy+=(my-gy)*.07;if(mx>-900){gl.style.opacity=1;gl.style.transform='translate('+gx+'px,'+gy+'px)'}requestAnimationFrame(g)})();
@@ -764,7 +765,7 @@ if(!rm)(function g(){gx+=(mx-gx)*.07;gy+=(my-gy)*.07;if(mx>-900){gl.style.opacit
 const rc=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');rc.unobserve(x.target);setTimeout(()=>{x.target.style.transitionDelay=''},1400)}}),{threshold:.1});
 document.querySelectorAll('.cards .card,.two .card,#education .card,.it,.pub').forEach((el,i,a)=>{el.classList.add('rc');el.style.transitionDelay=((i%4)*110)+'ms';rc.observe(el)});
 // scrambling section titles
-function decode(el){if(rm||el._d)return;el._d=1;const ns=[],w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);while(w.nextNode())if(w.currentNode.nodeValue.trim())ns.push([w.currentNode,w.currentNode.nodeValue]);const tot=ns.reduce((a,[,o])=>a+o.length,0),step=Math.max(1,Math.ceil(tot/26));let f=0;const run=()=>{let k=f;ns.forEach(([n,o])=>{n.nodeValue=[...o].map(c=>{if(c===' '||c==='\n')return c;if(k-->0)return c;return ch[Math.random()*ch.length|0]}).join('')});f+=step};run();const t=setInterval(()=>{run();if(f>tot+6){ns.forEach(([n,o])=>n.nodeValue=__trv(o));clearInterval(t);el._d=0}},75)}
+function decode(el){if(rm||el._d)return;el._d=1;const h0=el.offsetHeight;if(h0)el.style.minHeight=h0+'px';const ns=[],w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);while(w.nextNode())if(w.currentNode.nodeValue.trim())ns.push([w.currentNode,w.currentNode.nodeValue]);const tot=ns.reduce((a,[,o])=>a+o.length,0),step=Math.max(1,Math.ceil(tot/26));let f=0;const run=()=>{let k=f;ns.forEach(([n,o])=>{n.nodeValue=[...o].map(c=>{if(c===' '||c==='\n')return c;if(k-->0)return c;return ch[Math.random()*ch.length|0]}).join('')});f+=step};run();const t=setInterval(()=>{run();if(f>tot+6){ns.forEach(([n,o])=>n.nodeValue=__trv(o));clearInterval(t);el._d=0;el.style.minHeight=''}},75)}
 const so2=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){decode(x.target.querySelector('h2'));so2.unobserve(x.target)}}),{threshold:.2});
 document.querySelectorAll('section').forEach(s=>so2.observe(s));
 // timeline progress + back to top
@@ -784,12 +785,13 @@ sgc.addEventListener('change',()=>sgn.classList.toggle('show',sgc.checked));
 document.getElementById('ss').onclick=()=>{const n=document.getElementById('sn').value.trim(),em=document.getElementById('se').value.trim(),m=document.getElementById('sm').value.trim(),sg=sgc.checked,to=EMAIL;if(!n||!m){say('Please add your name and a message');return}if(!ok_(to)){say('Email not set yet');return}location.href='mailto:'+to+'?subject='+encodeURIComponent((sg?'Signal chat request from ':'Message from ')+n)+'&body='+encodeURIComponent(m+'\n\n\u2014 '+n+(em?' ('+em+')':'')+(sg?'\n[Signal chat requested]':''));sgo(false)};
 // DNA / protein-style decoding for body text
 const dec=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){decode(x.target);dec.unobserve(x.target)}}),{threshold:.35});
-document.querySelectorAll('.card h3,.cbig').forEach(el=>dec.observe(el));
+const DEC=".card h3,.cbig";
+document.querySelectorAll(DEC).forEach(el=>dec.observe(el));
 // intro curtain
 const ld=document.getElementById('load');let seen=false;try{seen=sessionStorage.getItem('seen')}catch(e){}
-if(seen||rm||location.hash==="#card")ld.remove();else{try{sessionStorage.setItem('seen','1')}catch(e){}
+if(seen||rm||location.hash==="#card"){ld.remove();__go()}else{setTimeout(__go,7000);try{sessionStorage.setItem('seen','1')}catch(e){}
 const lt=document.getElementById('lt'),w='CHINNAPAT SINGVAN';let f=0;
-const t=setInterval(()=>{lt.textContent=[...w].map((c,i)=>c===' '||i<f?c:'ATGC'[Math.random()*4|0]).join('');if(++f>w.length+4){clearInterval(t);setTimeout(()=>{ld.classList.add('out');setTimeout(()=>ld.remove(),1000)},350)}},70)}
+const t=setInterval(()=>{lt.textContent=[...w].map((c,i)=>c===' '||i<f?c:'ATGC'[Math.random()*4|0]).join('');if(++f>w.length+4){clearInterval(t);setTimeout(()=>{ld.classList.add('out');setTimeout(()=>{ld.remove();__go()},1000)},350)}},70)}
 // pH-indicator accent: hue drifts teal -> blue -> violet as you scroll
 function ph(){const dk=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches,p=Math.min(1,scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)),h=Math.round(172+p*110);root.style.setProperty('--ac',dk?'hsl('+h+' 78% 66%)':'hsl('+h+' 82% 27%)')}
 addEventListener('scroll',ph,{passive:true});ph();
